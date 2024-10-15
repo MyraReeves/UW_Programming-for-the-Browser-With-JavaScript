@@ -21,24 +21,31 @@ console.log('My favorite color is:', myself.favoriteFoodIsColor);
 
 
 // 3. Create an array to represent this tic-tac-toe board
-
 // -O-
 // -XO
 // X-X
-ticTacToeBoard = ['-O-', '-XO', 'X-X']
+ticTacToeBoard = ['-O-', '-XO', 'X-X'];
 
-console.log('The initial/starting game board: \n' +
+console.log(
+  'The initial/starting game board: \n' +
   ticTacToeBoard[0] + '\n' +
   ticTacToeBoard[1] + '\n' +
   ticTacToeBoard[2]
-)
+);
 
 
 // 4. After the array is created, 'O' claims the top right square.
 // Update that value.
+ticTacToeBoard[0] = 'OO-';
 
 
 // 5. Log the grid to the console.
+console.log(
+  'First move. O claims top right: \n' +
+  ticTacToeBoard[0] + '\n' +
+  ticTacToeBoard[1] + '\n' +
+  ticTacToeBoard[2]
+);
 
 
 // 6. You are given an email as string myEmail, make sure it is in correct email format.
