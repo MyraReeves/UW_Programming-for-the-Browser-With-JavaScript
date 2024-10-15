@@ -35,13 +35,64 @@ console.log('The cost per square inch of a $16.99 thirteen inch pizza is approxi
 console.log('The cost per square inch of a $19.99 seventeen inch pizza is approximately: \n\n' + (costPerSquareInch(17, 19.99)).toString(), "cents");
 
 
-// 3. Using the Math object, put together a code snippet
+/// 3. Using the Math object, put together a code snippet
 // that allows you to draw a random card with a value
 // between 1 and 13 (assume ace is 1, jack is 11…)
+function cardDrawn() {
+    return Math.floor((Math.random() * 11) + 1);
+}
+
+// Testing the function:
+console.log('Test result of running cardDraw function: ' + cardDrawn());
 
 
 // 4. Draw 3 cards and use Math to determine the highest
 // card
+function determineHighestCard(){
+    let card1 = cardDrawn();
+    let card2 = cardDrawn();
+    let card3 = cardDrawn();
+    let highestCard = Math.max(card1, card2, card3);
+
+    // Converting the numerical values into Aces or Jacks, if applicable:
+    if (card1 == 1){
+        card1 = 'Ace'
+    }
+    else if (card1 == 11){
+        card1 = 'Jack'
+    }
+    else card1 = card1;
+
+    if (card2 == 1){
+        card2 = 'Ace'
+    }
+    else if (card2 == 11){
+        card2 = 'Jack'
+    }
+    else card2 = card2;
+
+    if (card3 == 1){
+        card3 = 'Ace'
+    }
+    else if (card3 == 11){
+        card3 = 'Jack'
+    }
+    else card3 = card3;
+
+    if (highestCard == 1){
+        highestCard = 'Ace'
+    }
+    else if (highestCard == 11){
+        highestCard = 'Jack'
+    }
+    else highestCard = highestCard;
+
+    // Printing results to the console:
+    console.log("This round, the three cards were: " + card1 + ", " + card2 + ", and " + card3 + ". " + " \nThe highest drawn value was: " + highestCard)
+}
+
+// Calling the function:
+determineHighestCard()
 
 
 /**
@@ -83,12 +134,24 @@ firstName = newTestString.substring(0, endOfFirstName)
 console.log("Therefore, the newly re-defined firstName variable is: \n\n", firstName)
 
 /**
- * FIND THE MIDDLE DATE
+ * FIND THE middleInMilliseconds DATE
  */
-// On your own find the middle date(and time) between the following two dates:
+// On your own find the middleInMilliseconds date(and time) between the following two dates:
 // 1/1/2020 00:00:00 and 4/1/2020 00:00:00
 //
 // Look online for documentation on Date objects.
 
 // Starting hint:
 const endDate = new Date(2019, 3, 1);
+
+let start = new Date(2020, 0, 1);       // Like indexes, the months of dates start counting at zero. Therefore, 1/1/2020 is expressed as 2020, 0, 1
+let end = new Date(2020, 3, 1);         // Similarly, the fourth month is expressed as 3
+
+// Converts the starting and ending time stamps into numbers 
+// using milliseconds since the epoch (00:00:00 of January 1, 1970, UTC),
+// and finds the halfway point by adding the two numbers together and dividing in half:
+let middleInMilliseconds = (start.getTime() + end.getTime())/2;
+console.log("The middleInMilliseconds date(and time) can be expressed as: \n" + middleInMilliseconds)
+
+let middle = new Date(middleInMilliseconds);
+console.log("Expressed in local time using the more commonly used time format... \n\nSince the starting time stamp was: \n" + start, "\n\nAnd the ending time stamp occurred at: \n" + end, "\n\nThe half-way point between them was \n" + middle);
