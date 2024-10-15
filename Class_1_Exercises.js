@@ -30,11 +30,9 @@ function costPerSquareInch(diameter, price) {
     return Math.round(costPerInch*100);     // converts the result into cents, and rounds it the nearest whole cent.
 }
 
-console.log('The cost per square inch of a $16.99 thirteen inch pizza is approximately:');
-console.log((costPerSquareInch(13, 16.99)).toString() , "cents");
+console.log('The cost per square inch of a $16.99 thirteen inch pizza is approximately: \n\n' + (costPerSquareInch(13, 16.99)).toString(), "cents");
 
-console.log('The cost per square inch of a $19.99 seventeen inch pizza is approximately:');
-console.log((costPerSquareInch(17, 19.99)).toString() , "cents");
+console.log('The cost per square inch of a $19.99 seventeen inch pizza is approximately: \n\n' + (costPerSquareInch(17, 19.99)).toString(), "cents");
 
 
 // 3. Using the Math object, put together a code snippet
@@ -54,16 +52,35 @@ console.log((costPerSquareInch(17, 19.99)).toString() , "cents");
 // streetAddress, city, state, and zipCode. Use
 // this information to create a formatted address block
 // that could be printed onto an envelope.
+let firstName = "Bob";
+let lastName = "Smith";
+let streetAddress = "1500 6th Ave.";
+let city = "Seattle";
+let state = "WA";
+let zipcode = "98134";
+
+let completeAddress = firstName + " " + lastName + "\n" + streetAddress + "\n" + city + ", " + state + "  " + zipcode;
+
+console.log("Printing my variables together into a formatted address block would generate: \n\n" + completeAddress);
 
 
 // 2. You are given a string in this format:
 // firstName lastName(assume no spaces in either)
 // streetAddress
 // city, state zip(could be spaces in city and state)
-// 
-// Write code that is able to extract the first name from this string into a variable.
-// Hint: use indexOf, slice, and / or substring
+let newTestString = "Santa Claus \n123 Elf Road \nNorth Pole, AK  88888";
 
+console.log("If given a new string as an address, the first name can be determined based upon the index of where the first space character within the string is. For example, if given: \n\n" + newTestString);
+
+// Write code that is able to extract the first name from this string into a variable, using indexOf, slice, and/or substring
+let endOfFirstName = newTestString.indexOf(' ')       // As per the instructions, this assumes there are no spaces within the first name
+
+console.log("Then the first space within the new string is at index", endOfFirstName.toString())
+
+// Reassigns the firstName variable to be whatever string of characters is between index zero and the index of endOfFirstName:
+firstName = newTestString.substring(0, endOfFirstName)
+
+console.log("Therefore, the newly re-defined firstName variable is: \n\n", firstName)
 
 /**
  * FIND THE MIDDLE DATE
