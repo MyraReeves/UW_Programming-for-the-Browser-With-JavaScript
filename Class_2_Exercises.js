@@ -4,15 +4,34 @@
 // - lastName
 // - 'favorite food'
 // - bestFriend (object with the same 3 properties as above)
+const myself = {};
+
+myself.firstName = 'Myra';
+myself.lastName = 'Reeves';
+myself.favoriteFoodIsColor = 'purple';     // I wrote a color instead because "favorite food" is a common security question
+myself.bestFriend = {firstName: 'Shannon', lastName: 'Young', favoriteFoodIsColor: 'purple'};
+
+console.log('The myself object consists of the following array: ', myself);
 
 
 // 2. console.log best friend's firstName and your favorite food
+console.log('My favorite person is:', myself.bestFriend.firstName);
+console.log('My favorite color is:', myself.favoriteFoodIsColor);
+
 
 
 // 3. Create an array to represent this tic-tac-toe board
+
 // -O-
 // -XO
 // X-X
+ticTacToeBoard = ['-O-', '-XO', 'X-X']
+
+console.log('The initial/starting game board: \n' +
+  ticTacToeBoard[0] + '\n' +
+  ticTacToeBoard[1] + '\n' +
+  ticTacToeBoard[2]
+)
 
 
 // 4. After the array is created, 'O' claims the top right square.
