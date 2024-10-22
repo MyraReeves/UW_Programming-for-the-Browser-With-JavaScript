@@ -126,23 +126,27 @@ console.log('The due date is', dueDateInEpochDays, 'days since midnight on Janua
 
 
 
-// 9. Use dueDate values to create an HTML time tag in format
+// 9. Use dueDate values to create a time tag in format
 // <time datetime="YYYY-MM-DD">Month day, year</time>
-// I have provided a months array to help
-const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December'
-];
+function calculateDueDate(assignmentDate) {
+  assignmentDate = assignmentDate;
+  let assignmentOn = new Date(assignmentDate);
+  dueDateInDays = (Date.parse(assignmentDate))*0.000000011574074;
+  dueDateInMilliseconds = (dueDateInDays+7)*86400000;
+  dueDate = new Date(dueDateInMilliseconds);
+  return console.log('If the assignment was given on \n' + assignmentOn, '\nthen the due date is \n'+ dueDate);
+}
 
-
-// 10. log this value using console.log
+// 10. Log this value using console.log
+calculateDueDate('01/21/2019');
+calculateDueDate('02/21/2019');
+calculateDueDate('03/21/2019');
+calculateDueDate('04/21/2019');
+calculateDueDate('05/21/2019');
+calculateDueDate('06/21/2019');
+calculateDueDate('07/21/2019');
+calculateDueDate('08/21/2019');
+calculateDueDate('09/21/2019');
+calculateDueDate('10/21/2019');
+calculateDueDate('11/21/2019');
+calculateDueDate('12/21/2019');
