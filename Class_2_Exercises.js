@@ -104,11 +104,26 @@ console.log(valid_withNumberEmail, '\n' + testEmail(valid_withNumberEmail));
 // 7. You are given an assignmentDate as a string in the format "month/day/year"
 // i.e. '1/21/2019' - but this could be any date.
 // Convert this string to a Date
-const assignmentDate = '1/21/2019';
+let assignmentDate = '01/21/2019';
+let inEpochDateFormat = Date.parse(assignmentDate);
+console.log(assignmentDate, 'is', inEpochDateFormat.toString(), 'milliseconds since midnight on January 1, 1970, UTC');
+
+let dueDateInDays = inEpochDateFormat*0.000000011574074;
+// 1 millisecond is 0.000000011574074 Days
+console.log('or', dueDateInDays.toString(), 'days since midnight on January 1, 1970, UTC')
+
 
 
 // 8. Create a new Date instance to represent the dueDate.  
 // This will be exactly 7 days after the assignment date.
+let dueDateInEpochDays = dueDateInDays+7;
+let dueDateInMilliseconds = dueDateInEpochDays*86400000;
+// 1 day is 86,400,000 milliseconds
+
+let dueDate = new Date(dueDateInMilliseconds);
+
+console.log('The due date is', dueDateInEpochDays, 'days since midnight on January 1, 1970, UTC \n...which is seven days later \n...or', dueDateInMilliseconds, 'milliseconds in Epoch time since midnight on January 1, 1970, UTC \n...or', dueDate)
+
 
 
 // 9. Use dueDate values to create an HTML time tag in format
