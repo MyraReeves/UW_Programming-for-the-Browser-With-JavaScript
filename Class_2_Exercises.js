@@ -51,9 +51,54 @@ console.log(
 // 6. You are given an email as string myEmail, make sure it is in correct email format.
 // Should be 1 or more characters, then @ sign, then 1 or more characters, then dot, then one or more characters - no whitespace
 // i.e. foo@bar.baz
-// Hints:
-// - Use rubular to check a few emails: https://rubular.com/
-// - Use regexp test method https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test
+
+// Test email addresses:
+const valid_exampleEmail = 'example@example.com';
+const valid_firstLastEmail = 'John.Doe@company-website.org';
+const invalid_missingAt = 'Mary-Sue2gmail.com';
+const invalid_incompleteDomain = 'Henrietta@mail.c';
+const valid_withNumberEmail = '1337_H4X0R@computer.com';
+
+/* Explanation of RegExp syntax:
+Expected format for myEmail string = name @ domain . extension
+
+The desired RegularExpression is placed between two forward slashes
+^ marks the beginning of the desired string
+That desired string should be:
+(string of any letters, numbers, hyphens, underscores, and/or dots) @ (string of any letters, numbers, hyphens, and/or underscores) . (string of only a few letters)
+() surround each substring
+[] surround the search validator codes for each substring
+[a-z] allows for any lowercase letter in the English alphabet
+[A–Z] allows for any uppercase letters in the English alphabet
+[0-9] allows for any numerical digits. \d would as well
+[-] allows for hyphens
+[ _ ] allows for underscores
+[.] is a special character allowing for ANYTHING. Therefore an escape character \ is needed in front for it to truly mean that periods are allowed
+{} surround exact min,max length requirements
++ allows for any length of characters
+$ marks the end of the desired string
+*/ 
+
+const valid_email_sequence = /^([a-zA-Z0-9-_\.]+)@([a-zA-Z0-9-_]+)\.([a-zA-Z]{2,10})$/;
+// If desired, adding   (\.[a-zA-Z]{2,5})?    to the end would allow for an optional (hence the ? character) country code domain at the very end like .ca for Canada or .mx for Mexico, for example.  However, expanding beyond English language countries brings the extra complication that so far my validation sequence doesn't allow for non-English characters!  Therefore, I'm going to stick with a U.S.-only email format and leave off that extra domain country code.
+
+
+function testEmail(myEmail) {
+  if (valid_email_sequence.test(myEmail) === true){
+    return 'has a VALID email format ✅'
+  }
+  else 
+    return 'is NOT a valid email 🚫'
+};
+
+
+// Testing addresses:
+console.log(valid_exampleEmail, '\n' + testEmail(valid_exampleEmail));
+console.log(valid_firstLastEmail, '\n' + testEmail(valid_firstLastEmail));
+console.log(invalid_missingAt, '\n' + testEmail(invalid_missingAt));
+console.log(invalid_incompleteDomain, '\n' + testEmail(invalid_incompleteDomain));
+console.log(valid_withNumberEmail, '\n' + testEmail(valid_withNumberEmail));
+
 
 
 // 7. You are given an assignmentDate as a string in the format "month/day/year"
