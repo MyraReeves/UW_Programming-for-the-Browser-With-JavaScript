@@ -1,4 +1,4 @@
-// 1. Create attack function below.  This will take the following parameters:
+// 1. Create attack function below.  This will take the following 4 parameters:
 // attackingPlayer, defendingPlayer, baseDamage, variableDamage
 
 const attack = function (attackingPlayer, defendingPlayer, baseDamage, variableDamage){
