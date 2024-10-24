@@ -2,21 +2,21 @@
 // Should include: 
 // - firstName
 // - lastName
-// - 'favorite food'
-// - bestFriend (object with the same 3 properties as above)
+// - a color
+// - a friend (object with the same 3 properties as above)
 const myself = {};
 
 myself.firstName = 'Myra';
 myself.lastName = 'Reeves';
-myself.favoriteFoodIsColor = 'purple';     // I wrote a color instead because "favorite food" is a common security question
-myself.bestFriend = {firstName: 'Shannon', lastName: 'Young', favoriteFoodIsColor: 'purple'};
+myself.color = 'purple';
+myself.friend = {firstName: 'Shannon', lastName: 'Young', color: 'purple'};
 
 console.log('The myself object consists of the following array: ', myself);
 
 
-// 2. console.log best friend's firstName and your favorite food
-console.log('My favorite person is:', myself.bestFriend.firstName);
-console.log('My favorite color is:', myself.favoriteFoodIsColor);
+// 2. console.log best friend's firstName and your color
+console.log('My favorite person is:', myself.friend.firstName);
+console.log('My favorite color is:', myself.color);
 
 
 
@@ -127,7 +127,7 @@ console.log('The due date is', dueDateInEpochDays, 'days since midnight on Janua
 
 
 // 9. Use dueDate values to create a time tag in format
-// <time datetime="YYYY-MM-DD">Month day, year</time>
+// <time datetime="MM-DD-YYYY">Month day, year</time>
 function calculateDueDate(assignmentDate) {
   assignmentDate = assignmentDate;
   let assignmentOn = new Date(assignmentDate);
