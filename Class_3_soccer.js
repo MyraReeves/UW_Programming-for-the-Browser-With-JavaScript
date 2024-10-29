@@ -68,3 +68,48 @@ const loggingWin = (...results) => {
   testString = {w: 3, d: 1, l: 0};
   getPointsFromResult2(testString);
   
+  
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// Create a getTotalPoints function which accepts a string of results
+// including wins, draws, and losses i.e. 'wwdlw'
+// Returns total number of points won
+
+//    win = w;
+//    draw = d;
+//    loss = l;
+//    wwdlw = w + w + d + l + w;
+
+//    RESULT_VALUES = {w: 3, d: 1, l: 0}
+console.log("\n\nResults from the getTotalPoints function are below")
+
+
+
+const winValue = RESULT_VALUES.w;
+const drawValue = RESULT_VALUES.d;
+const lossValue = RESULT_VALUES.l;
+
+const getTotalPoints = function(resultsString){
+  let w = winValue;
+  let d = drawValue;
+  let l = lossValue;
+  let resultsStringArray = resultsString.split('');
+  let sum = 0;
+  resultsStringArray.forEach(resultInArray => {
+    if (resultInArray == 'w'){
+      sum += w
+    }
+    else if (resultInArray == 'd'){
+      sum += d
+    }
+    else {sum += l}
+  } )
+
+  return console.log("If the string of results is: ", resultsString, "\nThen the total number of points is: ", sum)
+};
+
+// Checking getTotalPoints
+getTotalPoints('wwdlw')                       // Total number of points should equal 10
+console.log(getTotalPoints('wwdl'));          // Total number of points should equal 7
+
+
