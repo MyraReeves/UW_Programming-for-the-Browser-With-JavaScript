@@ -26,6 +26,7 @@ const spaceShip3 = new SpaceShip();
 spaceShip3.accelerate();
 
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 // Create a function testPhoneNumber that
@@ -94,3 +95,153 @@ const parsePhoneNumber = function(phoneNumber) {
 // Check parsePhoneNumber
 console.log(parsePhoneNumber('206-333-4444'));              // should return {areaCode: '206', phoneNumber: '333-4444'}
 console.log(parsePhoneNumber('(222) 422-5353'));            // should returns {areaCode: '222', phoneNumber: '422-5353'}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// Create function logReceipt that accepts menu items (1 or as many as you want) as objects
+// with these properties: {descr, price}
+// i.e. {descr: 'Coke', price: 1.99}
+// function should log each item to the console. Then log a total price.
+
+const logReceipt = function(...objects){
+    array = [...objects]
+    arrayLength = array.length
+    for (let i = 0; i < array.length; i++) {
+      let name = array[i].descr;
+      let price = array[i].price;
+      console.log(name, '- $' + price);
+    }
+    let sum = 0
+    for (let i = 0; i < array.length; i++) {
+      let price1 = Number(array[i].price);
+      sum += price1
+    }
+    console.log('Total - $', sum)
+  };
+  
+  // Check
+  logReceipt(
+    { descr: 'Burrito', price: 5.99 },
+    { descr: 'Chips & Salsa', price: 2.99 },
+    { descr: 'Sprite', price: 1.99 }
+  );
+  // should log something like:
+  // Burrito - $5.99
+  // Chips & Salsa - $2.99
+  // Sprite - $1.99
+  // Total - $10.97
+  
+  
+  /////////////////////////////////////////////////////////////////////
+  //        SOLUTION THOUGHT PROCESSES ARE SPELLED OUT BELOW        //
+  ///////////////////////////////////////////////////////////////////
+  
+  console.log("\n\n\n\n\n➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿\nSolution thought process shown below\n➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿")
+  
+  // IN-CLASS EXERCISE:
+  
+  // 1. Create a function that accepts as many 
+  // objects as desired. These objects each have two properties, 
+  // descr and price.
+  // 2. Log to the console a list of each item with the price, then 
+  // the total
+  // Hints: a. Use array forEach method, which accepts a function
+  // b. Consider separating into multiple functions
+  // const bud = { descr: 'Bud Light', price: 3.99 };
+  // const burger = { descr: 'Hamburger', price: 6.99 };
+  // Result:
+  // Bud Light - $3.99
+  // Hamburger - $6.99
+  // Total - $10.98
+  const bud = { descr: 'Bud Light', price: 3.99 };
+  const burger = { descr: 'Hamburger', price: 6.99 };
+  
+  
+  
+  // Printing name of item and its price if each object is run separately instead of in an array:
+  const logReceipt_inClassExercise = function(item){
+    const eachItem = function(item){
+      console.log(item.descr, '- $' + item.price)
+    }
+    eachItem(item)
+  };
+  
+  // Testing:
+  logReceipt_inClassExercise(bud);
+  logReceipt_inClassExercise(burger);
+  
+  
+  
+  
+  
+  // Finding total price with all objects in one array:
+  const logReceiptSum_inClassExercise = function(...arguments){
+    console.log("\n\nIf the array is...")
+    array = [...arguments]
+    console.log(array)
+  
+    console.log("\nThe length of the array is:")
+    arrayLength = array.length
+    console.log(arrayLength)
+    
+    console.log("\nThe first item in the above array:")
+    console.log(array[0])
+    console.log(array[0].price)
+  
+    console.log("\nPrices of all items in array:")
+    for (let i = 0; i < array.length; i++) {
+      const price = array[i].price;
+      console.log('Item ' + i, '=', price);
+    }
+  
+    console.log("\nAdding those up equals:")
+    let sum = 0
+    for (let i = 0; i < array.length; i++) {
+      let price1 = Number(array[i].price);
+      sum += price1
+    }
+  
+    console.log(sum)
+  };
+  
+  // Testing:
+  logReceiptSum_inClassExercise(bud, burger)
+  console.log('\n\n\n')
+  logReceiptSum_inClassExercise(
+    { descr: 'Burrito', price: 5.99 },
+    { descr: 'Chips & Salsa', price: 2.99 },
+    { descr: 'Sprite', price: 1.99 }
+  );
+  
+  
+  
+  
+  // Printing name of each item and its price when all objects are in one array:
+  const inventory = function(...objectsArray){
+    array = [...objectsArray]
+    console.log("\n\nThe array of objects is...", array)
+    arrayLength = array.length
+    console.log("The length of the array is:", arrayLength)
+    console.log("The descriptive name of the first object is:", array[0].descr, "\nAnd its price is:", array[0].price)
+    console.log("\nPrinting out all the object names and their prices:")
+    for (let i = 0; i < array.length; i++) {
+      let name = array[i].descr;
+      let price = array[i].price;
+      console.log(name, '- $' + price);
+    }
+  };
+  
+  // Testing:
+  inventory(
+    { descr: 'Bud Light', price: 3.99 },
+    { descr: 'Hamburger', price: 6.99 }
+  )
+  
+  inventory(
+    { descr: 'Burrito', price: 5.99 },
+    { descr: 'Chips & Salsa', price: 2.99 },
+    { descr: 'Sprite', price: 1.99 }
+  );
+  
