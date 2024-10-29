@@ -69,47 +69,73 @@ const loggingWin = (...results) => {
   getPointsFromResult2(testString);
   
   
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// Create a getTotalPoints function which accepts a string of results
-// including wins, draws, and losses i.e. 'wwdlw'
-// Returns total number of points won
-
-//    win = w;
-//    draw = d;
-//    loss = l;
-//    wwdlw = w + w + d + l + w;
-
-//    RESULT_VALUES = {w: 3, d: 1, l: 0}
-console.log("\n\nResults from the getTotalPoints function are below")
-
-
-
-const winValue = RESULT_VALUES.w;
-const drawValue = RESULT_VALUES.d;
-const lossValue = RESULT_VALUES.l;
-
-const getTotalPoints = function(resultsString){
-  let w = winValue;
-  let d = drawValue;
-  let l = lossValue;
-  let resultsStringArray = resultsString.split('');
-  let sum = 0;
-  resultsStringArray.forEach(resultInArray => {
-    if (resultInArray == 'w'){
-      sum += w
-    }
-    else if (resultInArray == 'd'){
-      sum += d
-    }
-    else {sum += l}
-  } )
-
-  return console.log("If the string of results is: ", resultsString, "\nThen the total number of points is: ", sum)
-};
-
-// Checking getTotalPoints
-getTotalPoints('wwdlw')                       // Total number of points should equal 10
-console.log(getTotalPoints('wwdl'));          // Total number of points should equal 7
-
-
+  
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  // Create a getTotalPoints function which accepts a string of results
+  // including wins, draws, and losses i.e. 'wwdlw'
+  // Returns total number of points won
+  
+  //    win = w;
+  //    draw = d;
+  //    loss = l;
+  //    wwdlw = w + w + d + l + w;
+  //    RESULT_VALUES = {w: 3, d: 1, l: 0}
+  console.log("\n\nResults from the getTotalPoints function are below")
+  
+  const winValue = RESULT_VALUES.w;
+  const drawValue = RESULT_VALUES.d;
+  const lossValue = RESULT_VALUES.l;
+  
+  const getTotalPoints = (resultsString) => {
+    let w = winValue;
+    let d = drawValue;
+    let l = lossValue;
+    let resultsStringArray = resultsString.split('');
+    let sum = 0;
+    resultsStringArray.forEach(resultInArray => {
+      if (resultInArray == 'w'){
+        sum += w
+      }
+      else if (resultInArray == 'd'){
+        sum += d
+      }
+      else {sum += l}
+    } )
+  
+    // console.log("If the string of results is: ", resultsString, "\nThen the total number of points is: ", sum)
+    return sum;
+  };
+  
+  // Checking getTotalPoints:
+  console.log(getTotalPoints('wwdlw'));         // 10
+  console.log(getTotalPoints('wwdl'));          // 7
+  
+  
+  
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Create an orderTeams function that accepts as many team objects as desired, 
+  // each argument is a team object in the format { name, results }
+  // i.e. {name: 'Sounders', results: 'wwlwdd'}
+  // Logs each entry to the console as "Team name: points"
+  console.log("\n\nResults from the orderTeams function are below")
+  
+  const orderTeams = (...teamObjects) => {
+    let teamArray = [...teamObjects]
+  
+    teamArray.forEach(team => {
+      let teamName = team.name
+      let resultsString = team.results
+      points = getTotalPoints(resultsString)
+      console.log(teamName + ": " + points)
+    })
+  };
+  
+  
+  // Checking orderTeams:
+  orderTeams(
+    { name: 'Sounders', results: 'wwdl' },
+    { name: 'Galaxy', results: 'wlld' }
+  );
+  // should log the following to the console:
+  // Sounders: 7
+  // Galaxy: 4
