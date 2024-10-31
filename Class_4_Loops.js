@@ -30,7 +30,81 @@ const foodIsCooked = (kind, internalTemp, doneness) => {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/* Create a function getDeck that returns an array of 52 cards. 
+
+/*  Given a complete deck of cards, loop through and log every 
+property of every card to the console. 
+The deck is provided below.
+*/
+
+const cards = [
+    { val: 2, displayVal: '2', suit: 'hearts' },
+    { val: 3, displayVal: '3', suit: 'hearts' },
+    { val: 4, displayVal: '4', suit: 'hearts' },
+    { val: 5, displayVal: '5', suit: 'hearts' },
+    { val: 6, displayVal: '6', suit: 'hearts' },
+    { val: 7, displayVal: '7', suit: 'hearts' },
+    { val: 8, displayVal: '8', suit: 'hearts' },
+    { val: 9, displayVal: '9', suit: 'hearts' },
+    { val: 10, displayVal: '10', suit: 'hearts' },
+    { val: 10, displayVal: 'Jack', suit: 'hearts' },
+    { val: 10, displayVal: 'Queen', suit: 'hearts' },
+    { val: 10, displayVal: 'King', suit: 'hearts' },
+    { val: 11, displayVal: 'Ace', suit: 'hearts' },
+    { val: 2, displayVal: '2', suit: 'diamonds' },
+    { val: 3, displayVal: '3', suit: 'diamonds' },
+    { val: 4, displayVal: '4', suit: 'diamonds' },
+    { val: 5, displayVal: '5', suit: 'diamonds' },
+    { val: 6, displayVal: '6', suit: 'diamonds' },
+    { val: 7, displayVal: '7', suit: 'diamonds' },
+    { val: 8, displayVal: '8', suit: 'diamonds' },
+    { val: 9, displayVal: '9', suit: 'diamonds' },
+    { val: 10, displayVal: '10', suit: 'diamonds' },
+    { val: 10, displayVal: 'Jack', suit: 'diamonds' },
+    { val: 10, displayVal: 'Queen', suit: 'diamonds' },
+    { val: 10, displayVal: 'King', suit: 'diamonds' },
+    { val: 11, displayVal: 'Ace', suit: 'diamonds' },
+    { val: 2, displayVal: '2', suit: 'clubs' },
+    { val: 3, displayVal: '3', suit: 'clubs' },
+    { val: 4, displayVal: '4', suit: 'clubs' },
+    { val: 5, displayVal: '5', suit: 'clubs' },
+    { val: 6, displayVal: '6', suit: 'clubs' },
+    { val: 7, displayVal: '7', suit: 'clubs' },
+    { val: 8, displayVal: '8', suit: 'clubs' },
+    { val: 9, displayVal: '9', suit: 'clubs' },
+    { val: 10, displayVal: '10', suit: 'clubs' },
+    { val: 10, displayVal: 'Jack', suit: 'clubs' },
+    { val: 10, displayVal: 'Queen', suit: 'clubs' },
+    { val: 10, displayVal: 'King', suit: 'clubs' },
+    { val: 11, displayVal: 'Ace', suit: 'clubs' },
+    { val: 2, displayVal: '2', suit: 'spades' },
+    { val: 3, displayVal: '3', suit: 'spades' },
+    { val: 4, displayVal: '4', suit: 'spades' },
+    { val: 5, displayVal: '5', suit: 'spades' },
+    { val: 6, displayVal: '6', suit: 'spades' },
+    { val: 7, displayVal: '7', suit: 'spades' },
+    { val: 8, displayVal: '8', suit: 'spades' },
+    { val: 9, displayVal: '9', suit: 'spades' },
+    { val: 10, displayVal: '10', suit: 'spades' },
+    { val: 10, displayVal: 'Jack', suit: 'spades' },
+    { val: 10, displayVal: 'Queen', suit: 'spades' },
+    { val: 10, displayVal: 'King', suit: 'spades' },
+    { val: 11, displayVal: 'Ace', suit: 'spades' }
+];
+  
+const logCardDeck = (deck => {
+for (let card = 0 ; card < cards.length ; card++){
+
+    console.log('Card properties: \nval is: ', cards[card].val , '\ndisplayVal is: ', cards[card].displayVal , '\nsuit is: ' , cards[card].suit)
+
+}
+})();
+// I turned it into an IIFE because there didn't appear any reason not to.
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+/* Create a function called getDeck that returns an array of 52 cards. 
 There are four suits (hearts, spades, clubs, diamonds). Each suit will have 13 cards: 
 2 – 10 will have a val equal to the number
 'Jack', 'Queen', and 'King' will all have a val of 10
@@ -42,14 +116,14 @@ const card = {
   suit: 'hearts',
 };                                                                                               */
 
-// 13 Possible card faces =    '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'
-// Count is 2 - 14                                                             11       12      13      14
-
 
 const deck = [];
 const number = [];     // Holds 2 thru Ace
 const val = [];            // Holds 2 thru 10
 const suits = ['♥️ hearts', 'spades ♠️', '♦️ diamonds', 'clubs ♣️'];
+
+// 13 Possible card faces =    '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'
+// Count is 2 - 14                                                             11       12      13      14
 
 
 // IIFE block to get face cards of two thru Ace:
