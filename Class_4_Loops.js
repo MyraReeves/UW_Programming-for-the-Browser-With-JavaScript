@@ -101,6 +101,18 @@ for (let card = 0 ; card < cards.length ; card++){
 // I turned it into an IIFE because there didn't appear any reason not to.
 
 
+
+console.log('\n──────────────────────────────────────────\n\n' )
+
+
+// Another method that was shown in the class pdf notes:
+const deckOfCards = Object.values(cards);
+for (let card of deckOfCards) {
+console.log(card);
+}
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -225,3 +237,63 @@ console.log(`Random card has display value? ${cardHasDisplayVal}`);
 
 console.log('\n\n🃏 Here is the entire deck:')
 console.log(deck);
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+/* Create a function cardsWorthTen that uses the array functions below (no regular loops allowed, no array forEach allowed). .forEach() allows a function to be run on an array so that each item in the array can be iterated thru (only works on arrays, unlike For loops which can work on array-like objects)
+
+From pdf lecture notes, the array functions that are allowed to be used are:
+Array.from()          Converts an array-like object into an an array so that its contents can be iterated thru
+.filter()             Filters out objects into a new array  
+                      const newArray = oldArray.filter((index) => index.key === 'desired value')
+.find()               Similar to filter but only returns the FIRST item that meets the condition. Returns that one object.
+.some()               Checks whether an element exists within the array   Returns true if it occurs at least once in the array.
+.every()              Checks whether a particular element is present inside every object in the array.          Returns true/false
+.map()                Loops thru an array of objects to return a new array containing only the requested key's values
+                      const newArray = oldArray.map(item => item.key)
+.join()               Returns a string of all the items in an array.
+                      Inside the returned string, each item is separated from the next using whatever character/string was specified (for example a comma).
+.reduce()             Combines an array of items into a single item (for example the sum of them all).
+
+
+cardsWorthTen should accept the array of cards below.
+It will return a comma separated string of the displayVals of only those cards worth exactly 10.
+*/
+
+const SetOfcards = [
+    { val: 2, displayVal: "2", suit: "hearts" },
+    { val: 3, displayVal: "3", suit: "hearts" },
+    { val: 4, displayVal: "4", suit: "hearts" },
+    { val: 5, displayVal: "5", suit: "hearts" },
+    { val: 6, displayVal: "6", suit: "hearts" },
+    { val: 7, displayVal: "7", suit: "hearts" },
+    { val: 8, displayVal: "8", suit: "hearts" },
+    { val: 9, displayVal: "9", suit: "hearts" },
+    { val: 10, displayVal: "10", suit: "hearts" },
+    { val: 10, displayVal: "Jack", suit: "hearts" },
+    { val: 10, displayVal: "Queen", suit: "hearts" },
+    { val: 10, displayVal: "King", suit: "hearts" },
+    { val: 11, displayVal: "Ace", suit: "hearts" }
+  ];
+
+
+  
+  const cardsWorthTen = SetOfcards => {
+    const filteredArray = SetOfcards.filter((card) => card.val === 10);
+    const newlyMappedArray = filteredArray.map(card => card.displayVal);
+    return newlyMappedArray.join(', ')  
+  };
+  
+  console.log(cardsWorthTen(SetOfcards));                        // "10, Jack, Queen, King"
+  
+  
+  
+  
+  /* filteredArray = [ {val: 10, displayVal: '10', suit: 'hearts'} , {val: 10, displayVal: 'Jack', suit: 'hearts'} , 
+                       {val: 10, displayVal: 'Queen', suit: 'hearts'} , {val: 10, displayVal: 'King', suit: 'hearts'} ]
+  */
+  
+  /* newlyMappedArray = ['10', 'Jack', 'Queen', 'King']
+  */
