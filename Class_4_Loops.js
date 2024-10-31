@@ -1,9 +1,40 @@
+/* Based on the kind of meat, this function should check whether the internalTemp is above the values below (from the chart in pdf slides), and return true if it is.
+
+chicken 165,     beef 'rare' 125     beef 'medium' 135     beef 'well' 155      */
+
+const foodIsCooked = (kind, internalTemp, doneness) => {
+    if (kind === 'chicken' && internalTemp > 165){
+      return true;
+    }
+    else if(kind === 'beef' && doneness === 'rare' && internalTemp > 125){
+      return true;
+    }
+    else if(kind === 'beef' && doneness === 'medium' && internalTemp > 135){
+      return true;
+    }
+    else if(kind === 'beef' && doneness === 'well' && internalTemp > 155){
+      return true;
+    }
+    else {
+      return false;
+    }
+  };
+  
+  // Test function
+  console.log(foodIsCooked('chicken', 90)); // should be false
+  console.log(foodIsCooked('chicken', 190)); // should be true
+  console.log(foodIsCooked('beef', 138, 'well')); // should be false
+  console.log(foodIsCooked('beef', 138, 'medium')); // should be true
+  console.log(foodIsCooked('beef', 138, 'rare')); // should be true
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 /* Create a function getDeck that returns an array of 52 cards. 
 There are four suits (hearts, spades, clubs, diamonds). Each suit will have 13 cards: 
 2 – 10 will have a val equal to the number
 'Jack', 'Queen', and 'King' will all have a val of 10
-'Ace' will have a val of 11
-*/
+'Ace' will have a val of 11                                     */
 
 const card = {
   val: 10,
@@ -15,10 +46,10 @@ const card = {
 // Count is 2 - 14                                                             11       12      13      14
 
 
-const deck = []
-const number = []     // Holds 2 thru Ace
-const val = []            // Holds 2 thru 10
-const suits = ['♥️ hearts', 'spades ♠️', '♦️ diamonds', 'clubs ♣️']
+const deck = [];
+const number = [];     // Holds 2 thru Ace
+const val = [];            // Holds 2 thru 10
+const suits = ['♥️ hearts', 'spades ♠️', '♦️ diamonds', 'clubs ♣️'];
 
 
 // IIFE block to get face cards of two thru Ace:
@@ -95,29 +126,28 @@ const getDeck = () => {
         deck.push(card)
     }     // end of displayVal loop
   }  // end of suit loop
-
-}
-getDeck()
+};
+getDeck();
 
 
 // CHECKS
-console.log(`Deck length equals 52? ${deck.length === 52}`)
+console.log(`Deck length equals 52? ${deck.length === 52}`);
 
-const randomCard = deck[Math.floor(Math.random() * 52)]
+const randomCard = deck[Math.floor(Math.random() * 52)];
 
 const cardHasVal =
   randomCard && randomCard.val && typeof randomCard.val === 'number'
-console.log(`Random card has val? ${cardHasVal}`)
+console.log(`Random card has val? ${cardHasVal}`);
 
 const cardHasSuit =
   randomCard && randomCard.suit && typeof randomCard.suit === 'string'
-console.log(`Random card has suit? ${cardHasSuit}`)
+console.log(`Random card has suit? ${cardHasSuit}`);
 
 const cardHasDisplayVal =
   randomCard &&
   randomCard.displayVal &&
   typeof randomCard.displayVal === 'string'
-console.log(`Random card has display value? ${cardHasDisplayVal}`)
+console.log(`Random card has display value? ${cardHasDisplayVal}`);
 
 console.log('\n\n🃏 Here is the entire deck:')
-console.log(deck)
+console.log(deck);
