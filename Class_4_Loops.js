@@ -34,13 +34,13 @@ const foodIsCooked = (kind, internalTemp, doneness) => {
 There are four suits (hearts, spades, clubs, diamonds). Each suit will have 13 cards: 
 2 – 10 will have a val equal to the number
 'Jack', 'Queen', and 'King' will all have a val of 10
-'Ace' will have a val of 11                                     */
+'Ace' will have a val of 11
 
 const card = {
   val: 10,
   displayVal: 'Jack'
   suit: 'hearts',
-};
+};                                                                                               */
 
 // 13 Possible card faces =    '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'
 // Count is 2 - 14                                                             11       12      13      14
