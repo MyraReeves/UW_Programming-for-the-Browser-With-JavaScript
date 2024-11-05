@@ -426,3 +426,70 @@ function dealNewCard(){
 function dealerTurn(){
 
 }
+
+
+
+
+// ---------------------------------------------------------------------------------------------
+/*
+6. Un-comment all the code below and run it in your browser
+*/
+
+console.log("\n\n🟡🟣🟡🟣🟡🟣🟡🟣🟡🟣🟡 \nTesting the console version of this program below: \n")
+
+/***************************************************************
+*  Pre-existing code from UW to run console part of assignment:
+***************************************************************/
+
+/* Logs the player's hand to the console */
+const showHand = (player) => {
+  const displayHand = player.hand.map((card) => card.displayVal);
+  console.log(`${player.name}'s hand is ${displayHand.join(', ')} (${calcPoints(player.hand).total})`);
+}
+
+/* Creates user prompt to ask if they'd like to draw a card */
+const getMessage = (count, dealerCard) => {
+  return `Dealer showing ${dealerCard.displayVal}, your count is ${count}.  Draw card?`
+}
+
+const startGame = function() {
+  Player.drawCard();
+  Dealer.drawCard();
+  Player.drawCard();
+  Dealer.drawCard();
+
+  let playerScore = calcPoints(Player.hand).total;
+
+  showHand(Player);
+
+  while (playerScore < 21 && confirm(getMessage(playerScore, Dealer.hand[0]))) {
+    Player.drawCard();
+    playerScore = calcPoints(Player.hand).total;
+    showHand(Player);
+  }
+  if (playerScore > 21) {
+    return 'You went over 21 - you lose! 😞';
+  }
+  console.log(`Player stands at ${playerScore}`);
+
+  let dealerScore = calcPoints(Dealer.hand).total;
+  while (dealerScore < 21 && dealerShouldDraw(Dealer.hand)) {
+    Dealer.drawCard();
+    dealerScore = calcPoints(Dealer.hand).total;
+    showHand(Dealer);
+  }
+  if (dealerScore > 21) {
+    return 'Dealer went over 21 - you win! 😀';
+  }
+  console.log(`Dealer stands at ${dealerScore}`);
+
+  return determineWinner(playerScore, dealerScore);
+}
+
+console.log(startGame());
+
+/*
+NOTE:
+If at any time the dealer's point total goes over 21, the dealer will lose the round immediately and the player will win
+If both the player and the dealer have ended their turns without going over 21, they will compare the points of their two hands.  Whoever's point total is greater will win the round.  If both point totals are equal, they will tie the round (push)
+*/
