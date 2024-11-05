@@ -300,29 +300,29 @@ If the dealer draws exactly 21 after drawing her first 2 cards, the dealer immed
 
 // IIFE to welcome player to blackjack game by name:
 const welcome = (function (){
-    const playerName = prompt("Hello!  What is your name?");
-    const hello = document.createElement("p");
-    hello.innerHTML = "Welcome to the blackjack table, " + playerName + "! <br>Good luck!";
-    const insertHello = document.getElementById("hello");
-    insertHello.appendChild(hello);
+  const playerName = prompt("Hello!  What is your name?");
+  const hello = document.createElement("p");
+  hello.innerHTML = "Welcome to the blackjack table, " + playerName + "! <br>Good luck!";
+  const insertHello = document.getElementById("hello");
+  insertHello.appendChild(hello);
 }
 )();
 
-let myButton = document.getElementById("JSbutton");             // Accesses HTML div with id "JSbutton"
-
 
 const start = (function (){
-const startButton = document.createElement('button');            // Creates a button element
-startButton.className = 'start';                                 // Sets class name for coloration styling
-startButton.innerHTML = 'Start Game';                            // Writes words "Start Game" on button
-myButton.appendChild(startButton);                               // Pushes "Start" button onto HTML page
-startButton.addEventListener('click', initGame);                 // When "Start" button is clicked on, starts the initGame function
-})();
+  let myButton = document.getElementById("startButton");           // Accesses HTML div with id "startButton"
+  const startButton = document.createElement('button');            // Creates a button element
+  startButton.className = 'start';                                 // Sets class name for coloration styling
+  startButton.innerHTML = 'Start Game';                            // Writes words "Start Game" on button
+  myButton.appendChild(startButton);                               // Pushes "Start" button onto HTML page
+  startButton.addEventListener('click', initGame);                 // When "Start" button is clicked on, starts the initGame function
+  })(); 
 
 
 function initGame() {
-    // const startButton = document.getElementByClass('start');     // Gets "Start" button so that it can be removed
-    // startButton.remove();                                        // Removes "Start" button from page, now that it has been clicked on
+
+  const removeButton = document.getElementById("startButton");  // Gets "Start" button so that it can be removed
+  removeButton.remove();                                        // Removes "Start" button from page, now that it has been clicked on
 
     Player.drawCard();                                              // Deals first card of first hand to player
     Player.drawCard();                                              // Second card of first hand to player
@@ -331,6 +331,8 @@ function initGame() {
     displayCard.innerHTML = (`Your first card is a ${Player.hand[0].displayVal} of ${Player.hand[0].suit}` + '<Br>' + `Your second card is a ${Player.hand[1].displayVal} of ${Player.hand[1].suit}`)
     const insertDisplayCard = document.getElementById("gameContent");
     insertDisplayCard.appendChild(displayCard);
+
+    let myButton = document.getElementById("gameButtons");           // Accesses HTML div with id "startButton"
 
     const dealButton = document.createElement('button');            // Creates a button element
     dealButton.className = 'deal';                                 // Sets class name for coloration styling
