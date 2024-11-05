@@ -139,23 +139,57 @@ const calcPoints = (dotHand) => {
 // console.log("val of Player.hand = ", Player.hand[2].val)
 // console.log(calcPoints(Player.hand))
 
+Dealer.drawCard()
+Dealer.drawCard()
+console.log(Dealer)
 
 
-calcPoints(Player.hand)
 
 
-/*4. Write a function dealerShouldDraw, that accepts one argument:
-dealerHand - Array - Array of card objects with properties val, displayVal, and suit
+
+/*
 This function should determine whether the dealer should draw another card or not (see rules above).
 
 Returns a boolean (true or false).  True means the dealer should draw another card, false means the dealer should end their turn.
 
 Hint: Use the calculateScore function to determine the dealer's total points.  Use the isSoft property passed back from that function to determine if the dealer has an Ace that is being counted as 11
 */
-const dealerShouldDraw = (dealerhand) => {
 
+
+// 4. Write a function dealerShouldDraw, that accepts one argument: dealerHand - Array of card objects with properties val, displayVal, and suit
+const dealerShouldDraw = (dealerHand) => {
+    console.log(dealerHand)
 };
 
+dealerShouldDraw(Dealer.hand)
+
+
+/*
+5. Write a function determineWinner, that accepts two arguments:
+playerScore - number - player's calculated total number of points
+dealerScore - number - dealer's calculated total number of points
+This function should determine the winner (or if there is a tie), based on the dealer's points and the player's points.
+
+Returns a string that shows the player's score, the dealer's score, and who wins (or if it is a tie).
+*/
+
+
+
+
+/* 6. Un-comment the last line, run it in your browser
+console.log(startGame());
+*/
+
+
+/*
+EXTRA CREDIT OPPORTUNITIES
+7. Show hands on the page (1 point total)
+Instead of (or in addition to) logging the player and dealer hands to the console, display these hands as HTML on the page.
+
+8. Add the following additional logic (1 point total)
+If the player gets exactly 21 after drawing her first 2 cards, the player immediately wins
+If the dealer draws exactly 21 after drawing her first 2 cards, the dealer immediately wins
+*/
 
 
 
@@ -260,6 +294,8 @@ const dealerShouldDraw = (dealerhand) => {
 // // console.log(startGame());
 
 
+//----------------------------------------------------------------
+
 // Extra Credit:  Separate game visible on HTML page:
 
 // IIFE to welcome player to blackjack game by name:
@@ -288,10 +324,11 @@ function initGame() {
     // const startButton = document.getElementByClass('start');     // Gets "Start" button so that it can be removed
     // startButton.remove();                                        // Removes "Start" button from page, now that it has been clicked on
 
-    Player.drawCard();                                              // Deals first hand to player
+    Player.drawCard();                                              // Deals first card of first hand to player
+    Player.drawCard();                                              // Second card of first hand to player
 
     const displayCard = document.createElement("p");
-    displayCard.innerText = `Your first card is a ${Player.hand[0].displayVal} of ${Player.hand[0].suit}`
+    displayCard.innerHTML = (`Your first card is a ${Player.hand[0].displayVal} of ${Player.hand[0].suit}` + '<Br>' + `Your second card is a ${Player.hand[1].displayVal} of ${Player.hand[1].suit}`)
     const insertDisplayCard = document.getElementById("gameContent");
     insertDisplayCard.appendChild(displayCard);
 
@@ -312,12 +349,12 @@ function initGame() {
 function dealNewCard(){
     Player.drawCard();                                           // Draws a new card
     calcPoints(Player.hand);                                     // Provides sum for player
-    console.log(calcPoints(Player.hand))
     const displayCard = document.createElement("p");
     for(let i = 1 ; i < Player.hand.length ; i++){
         let display = Player.hand[i].displayVal
         let cardSuit = Player.hand[i].suit
-        displayCard.innerText = `Your next card is a ${display} of ${cardSuit} ... You are at ${calcPoints(Player.hand[0])} points`
+        let sum = calcPoints(Player.hand)
+        displayCard.innerText = `Your next card is a ${display} of ${cardSuit} . . . . You are at ${sum.total}`
     };
     const insertDisplayCard = document.getElementById("gameContent");
     insertDisplayCard.appendChild(displayCard);
@@ -326,10 +363,3 @@ function dealNewCard(){
 function dealerTurn(){
 
 }
-
-
-/* When new CardPlayer is called (with a name argument), it should return an object with the following properties and method: 
-name - string equal to name passed in
-hand - array initially equal to an empty array
-drawCard - function with no arguments. Selects a card at random from the deck, and adds to hand array.  This does not need to remove the card from the deck (so theoretically a player could draw the same card multiple times - that's okay for this scenario).
-*/
