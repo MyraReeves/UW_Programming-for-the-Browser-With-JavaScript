@@ -385,28 +385,89 @@ function dealNewCard(){
             sumP -= (Player.hand[i].val);                       // Shows what sum was before the most recent card draw
             document.write('<p>' + `You were at ${sumP}. Your next card was a ${display} of ${cardSuit} !` + '</p><p>You went over 21!</p> <h2>You lost! 😖</h2>')};
     };
+    // Gah!  I never figured out how to get this function to return the player's final tally of points for comparison later with the dealer's.
     // return {finalTotal: sumP.total};
     // calcPoints(Player.hand);                                     // Provides sumP for player
     // console.log("Ending player hand is ", Player.hand)
     // const playerEndingTally = calcPoints(Player.hand)
     // console.log("Ending amount is: ", playerEndingTally.total)
     // return playerEndingTally.total;
-};
+  };
 
-// let finalTotal = dealNewCard();
-// console.log(finalTotal);
-
-
-let sumD = ((Dealer.hand[0]).val + (Dealer.hand[1]).val);            // Calculates sum of dealer's starting hand
-
-Dealer.hand = [Dealer.hand[0], Dealer.hand[1]];                     // Resets dealer's hand to only being two cards
-
-function dealerTurn(){
-    const removeButton = document.getElementById("gameButtons");  // Gets the game buttons
-    removeButton.remove();                                        // Removes both buttons, now that player is done using them
-
-    const displayDealerCard = document.createElement("p");
-    const insertDisplayDealerCard = document.getElementById("gameContent");
-    insertDisplayDealerCard.appendChild(displayDealerCard);
-    displayDealerCard.innerHTML = ("<p><br><br>🔒 You have locked in your total at and it's the dealer's turn now. 🔒 <br>" + `The dealer flips over their second card... It is a ${Dealer.hand[1].displayVal} of ${Dealer.hand[1].suit}` + '</p><p>' + `The dealer has ${sumD}` + '</p>');
-}
+  // let finalTotal = dealNewCard();
+  // console.log(finalTotal);
+  
+  
+  let sumD = ((Dealer.hand[0]).val + (Dealer.hand[1]).val);            // Calculates sum of dealer's starting hand
+  
+  Dealer.hand = [Dealer.hand[0], Dealer.hand[1]];                     // Resets dealer's hand to only being two cards
+  
+  function dealerTurn(){
+      const removeButton = document.getElementById("gameButtons");  // Gets the game buttons
+      removeButton.remove();                                        // Removes both buttons, now that player is done using them
+  
+      const displayDealerCard = document.createElement("p");
+      const insertDisplayDealerCard = document.getElementById("gameContent");
+      insertDisplayDealerCard.appendChild(displayDealerCard);
+      displayDealerCard.innerHTML = ("<p><br><br>🔒 You have locked in your total and it's the dealer's turn now. 🔒 <br>" + `The dealer flips over their second card... It is a ${Dealer.hand[1].displayVal} of ${Dealer.hand[1].suit}` + '<br>' + `This means that the dealer starts at ${sumD}` + '</p>');
+      const timedDelay = setTimeout(endOfGame1, 3000);
+  }
+  
+  
+  const endOfGame1 = () => {
+      const displayDealerCard = document.createElement("p");
+      const insertDisplayDealerCard = document.getElementById("gameContent");
+      insertDisplayDealerCard.appendChild(displayDealerCard);
+      if (sumD < 21 && dealerShouldDraw(Dealer.hand)){
+          Dealer.drawCard();
+          sumD = calcPoints(Dealer.hand).total;
+          displayDealerCard.innerHTML = (`The dealer takes another card... It is a ${Dealer.hand[2].displayVal} of ${Dealer.hand[2].suit}` + '</p><p>' + `The dealer now has ${sumD}...` + '</p>');
+          const timedDelay = setTimeout(endOfGame2, 4000);
+      }
+      else if (sumD > 21) {
+          document.write('<p>The dealer went over 21!</p> <h1 style="font-weight: bold; color: dark green;">You won! 😀</h1>');
+      }
+      else if (sumD == 21) {
+          displayDealerCard.textContent = ('21 wins the game for the dealer! 💸');
+      }
+      else {
+          displayDealerCard.innerHTML = (`The dealer stays at ${sumD}.`);
+      }
+  }
+  
+  
+  const endOfGame2 = () => {
+      const displayDealerCard = document.createElement("p");
+      const insertDisplayDealerCard = document.getElementById("gameContent");
+      sumD = calcPoints(Dealer.hand).total;
+          if (sumD > 21) {
+              document.write('<p>The dealer went over 21!</p> <h1 style="font-weight: bold; color: green;">You won! 😀</h1>');
+          }
+          else if (sumD < 21 && dealerShouldDraw(Dealer.hand)) {
+              Dealer.drawCard();
+              for(let i = 3 ; i < Dealer.hand.length ; i++){
+                  sumD = calcPoints(Dealer.hand).total;
+                  displayDealerCard.innerHTML = (`The dealer takes another card... It is a ${Dealer.hand[i].displayVal} of ${Dealer.hand[i].suit}` + '</p><p>' + `The dealer has ${sumD}...` + '</p>');
+                  insertDisplayDealerCard.appendChild(displayDealerCard);
+                  while (sumD < 21 && dealerShouldDraw(Dealer.hand)) {
+                      Dealer.drawCard();
+                      sumD += (Dealer.hand[i].val)
+                      if (sumD > 21) {
+                          sumD -= (Dealer.hand[i].val);           // Sets value to what it was BEFORE the dealer's most recent card
+                          document.write('<p>' + `The dealer had ${sumD}.  The dealer took another card. It was a ${Dealer.hand[i].displayVal} of ${Dealer.hand[i].suit}` + '<br>The dealer went over 21!</p> <h2 style="color:green";>You won! 😀</h2>');
+                          insertDisplayDealerCard.appendChild(displayDealerCard);
+                          
+                      }
+                      else {
+                          displayDealerCard.textContent = (`The dealer stands at ${sumD}`);
+                          insertDisplayDealerCard.appendChild(displayDealerCard);
+                      }
+                  }
+              }
+          }
+          else {
+          displayDealerCard.textContent = ('The dealer stays.');
+          insertDisplayDealerCard.appendChild(displayDealerCard);
+          };
+  };
+  
