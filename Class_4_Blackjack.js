@@ -110,11 +110,11 @@ const calcPoints = (dotHand) => {
       if (dotHand[i].val == 11){
           // By default, an Ace should be treated as being worth 11 for purposes of calculating the total:
           if ((sumOfHand + dotHand[i].val) > 21) {
-              // If the sumP of the val of all the cards in the hand would exceed 21, if an Ace were valued as 11, then the Ace should be valued at 1
+              // If the sum of the val of all the cards in the hand would exceed 21, if an Ace were valued as 11, then the Ace should be valued at 1
               sumOfHand += 1
           }
           else {
-              sumOfHand += dotHand[i].val          // Same as sumP += 11 because dotHand[i].val equals 11
+              sumOfHand += dotHand[i].val          // Same as sum += 11 because dotHand[i].val equals 11
               isSoft = true;
           }
       }
@@ -165,7 +165,7 @@ const dealerShouldDraw = (dealerHand) => {
 };
 
 
-/* Uncomment the block of code below to test the dealerShouldDraw() logic for the starting TWO dealer cards. 
+/* Uncomment the block of code below to test the dealerShouldDraw() logic for the first two dealer cards. 
 Only uncomment ONE of these two dealer test blocks at a time (Either Lines 170 thru 181   OR   Lines 187 thru 200)
 */
 // Dealer.drawCard()
@@ -185,9 +185,9 @@ Only uncomment ONE of these two dealer test blocks at a time (Either Lines 170 t
 /* Uncomment the block of code below to test the dealerShouldDraw() logic after receiving their THIRD card. 
 Only uncomment ONE of the two dealer test blocks at a time (Either Lines 170 thru 181   OR   Lines 187 thru 200)
 */
-// Dealer.drawCard()
-// Dealer.drawCard()
-// Dealer.drawCard()
+// Dealer.drawCard();
+// Dealer.drawCard();
+// Dealer.drawCard();
 // console.log("Dealer object:", Dealer);
 // console.log("Dealer.hand = ", Dealer.hand);
 // console.log("Value of Dealer's first card = ", Dealer.hand[0].val);
@@ -206,17 +206,37 @@ Only uncomment ONE of the two dealer test blocks at a time (Either Lines 170 thr
 5. Write a function determineWinner, that accepts two arguments:
 playerScore - number - player's calculated total number of points
 dealerScore - number - dealer's calculated total number of points
-This function should determine the winner (or if there is a tie), based on the dealer's points and the player's points.
-
-Returns a string that shows the player's score, the dealer's score, and who wins (or if it is a tie).
 */
+const determineWinner = (playerScore, dealerScore) => {
+  // This function should determine the winner (or if there is a tie), based on the dealer's points and the player's points.
+  let winner = '';
+    if (playerScore > dealerScore){
+        winner = '🎉 PLAYER wins! 🥳'
+    }
+    else if (dealerScore > playerScore){
+        winner = '💸 The DEALER has won! 💸'
+    }
+    else {
+        winner = '😯 There was a tie! 👀'
+    };
+    // Should return a string that shows the player's score, the dealer's score, and who wins (or if it is a tie).
+    return `The player's total was: ${calcPoints(Player.hand).total} \nThe dealer's total was: ${calcPoints(Dealer.hand).total} \n${winner}`;
+}
 
+/* Uncomment block of code below to test determineWinner() using 3 cards to each player */
+// Player.drawCard();
+// Player.drawCard();
+// Dealer.drawCard();
+// Dealer.drawCard();
+// Player.drawCard();
+// Dealer.drawCard();
+// console.log("Player.hand = ", Player.hand);
+// console.log("The calculation object created from the Player's hand is: ", calcPoints(Player.hand))
+// console.log("Dealer.hand = ", Dealer.hand);
+// console.log("The calculation object created from the Dealer's hand is: ", calcPoints(Dealer.hand))
+// console.log("Outcome of the game is below:")
+// console.log(determineWinner(calcPoints(Player.hand).total, calcPoints(Dealer.hand).total));
 
-
-
-/* 6. Un-comment the last line, run it in your browser
-console.log(startGame());
-*/
 
 
 /*
@@ -228,7 +248,6 @@ Instead of (or in addition to) logging the player and dealer hands to the consol
 If the player gets exactly 21 after drawing her first 2 cards, the player immediately wins
 If the dealer draws exactly 21 after drawing her first 2 cards, the dealer immediately wins
 */
-
 
 
 
