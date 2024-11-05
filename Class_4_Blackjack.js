@@ -103,65 +103,103 @@ const Dealer = new CardPlayer('Dealer - FrankCatton');
 
 //3. Write a function calcPoints, that accepts one argument: hand - Array - Array of card objects with properties val, displayVal, and suit
 const calcPoints = (dotHand) => {
-    // This function will calculate the total number of points the hand is worth. every card will be worth its val, EXCEPT each Ace card can be treated as either 1 or 11.
-    sumOfHand = 0;
-    isSoft = false;
-    for(let i = 0 ; i < dotHand.length ; i++){
-        if (dotHand[i].val == 11){
-            // By default, an Ace should be treated as being worth 11 for purposes of calculating the total:
-            if ((sumOfHand + dotHand[i].val) > 21) {
-                // If the sum of the val of all the cards in the hand would exceed 21, if an Ace were valued as 11, then the Ace should be valued at 1
-                sumOfHand += 1
-            }
-            else {
-                sumOfHand += dotHand[i].val          // Same as sum += 11 because dotHand[i].val equals 11
-                isSoft = true;
-            }
-        }
-        else {
-            sumOfHand += dotHand[i].val
-        }
-    }
-    /* This function should return an object with the following properties:
-    total - the number point value of the hand, 
-    isSoft - boolean (true if there is an Ace in the hand that is being counted as 11 points).   */
-    return {total: sumOfHand, isSoft};
+  // This function will calculate the total number of points the hand is worth. every card will be worth its val, EXCEPT each Ace card can be treated as either 1 or 11.
+  sumOfHand = 0;
+  isSoft = false;
+  for(let i = 0 ; i < dotHand.length ; i++){
+      if (dotHand[i].val == 11){
+          // By default, an Ace should be treated as being worth 11 for purposes of calculating the total:
+          if ((sumOfHand + dotHand[i].val) > 21) {
+              // If the sumP of the val of all the cards in the hand would exceed 21, if an Ace were valued as 11, then the Ace should be valued at 1
+              sumOfHand += 1
+          }
+          else {
+              sumOfHand += dotHand[i].val          // Same as sumP += 11 because dotHand[i].val equals 11
+              isSoft = true;
+          }
+      }
+      else {
+          sumOfHand += dotHand[i].val
+      }
+  }
+  /* This function should return an object with the following properties:
+  total - the number point value of the hand, 
+  isSoft - boolean (true if there is an Ace in the hand that is being counted as 11 points).   */
+  return {total: sumOfHand, isSoft};
 };
 
-// Testing with 3 cards.  Should only add 11 to sum (and thereby return 'true') if Ace is in first or second drawCard, unless sum of first & second is <= 10
-// Player.drawCard()
-// Player.drawCard()
-// Player.drawCard()
-// console.log("Player:", Player)
-// console.log("Player.hand = ", Player.hand)
-// console.log("val of Player.hand = ", Player.hand[0].val)
-// console.log("val of Player.hand = ", Player.hand[1].val)
-// console.log("val of Player.hand = ", Player.hand[2].val)
-// console.log(calcPoints(Player.hand))
 
-Dealer.drawCard()
-Dealer.drawCard()
-console.log(Dealer)
-
-
-
-
-
-/*
-This function should determine whether the dealer should draw another card or not (see rules above).
-
-Returns a boolean (true or false).  True means the dealer should draw another card, false means the dealer should end their turn.
-
-Hint: Use the calculateScore function to determine the dealer's total points.  Use the isSoft property passed back from that function to determine if the dealer has an Ace that is being counted as 11
-*/
+/* Uncomment the block of code below to test Player logic:
+Should only add 11 to sum (and thereby return 'true') if Ace is in first or second drawCard, 
+unless sum of first & second is <= 10  */
+// Player.drawCard();
+// Player.drawCard();
+// Player.drawCard();
+// console.log("Player object:", Player);
+// console.log("Player.hand = ", Player.hand);
+// console.log("Value of Player's first card = ", Player.hand[0].val);
+// console.log("Value of Player's second card = ", Player.hand[1].val);
+// console.log("Sum of those two values:")
+// console.log(Number(Player.hand[0].val) + Number(Player.hand[1].val))
+// console.log("Val of Player's third card = ", Player.hand[2].val);
+// console.log("CalcPoints object for Player's first 3 cards is below. \nIf isSoft is true that means an Ace was counted as having a value of 11.")
+// console.log(calcPoints(Player.hand));
 
 
-// 4. Write a function dealerShouldDraw, that accepts one argument: dealerHand - Array of card objects with properties val, displayVal, and suit
+
+
+// 4. Write a function dealerShouldDraw, that accepts one argument: dealerHand - Array of card objects with properties val, displayVal, and suit. This function should determine whether the dealer should draw another card or not.  This function should return a boolean. True means the dealer should draw another card; false means the dealer should end their turn.
 const dealerShouldDraw = (dealerHand) => {
-    console.log(dealerHand)
+  // If the dealer's hand is 16 points or less, the dealer should draw another card. Use the calculateScore function to determine the dealer's total points.
+  if ((calcPoints(dealerHand).total) <= 16){
+      return true
+  }
+  // If the dealer's hand is exactly 17 points AND the dealer has an Ace valued at 11, the dealer should draw another card. Use the isSoft property to determine if the dealer has an Ace that is being counted as 11.
+  else if ((calcPoints(dealerHand).total) == 17 && isSoft == true){
+      return true
+  }
+  // Otherwise (if the dealer's hand is 17 points or more), the dealer will end her turn.
+  else {
+      return false
+  }
 };
 
-dealerShouldDraw(Dealer.hand)
+
+/* Uncomment the block of code below to test the dealerShouldDraw() logic for the starting TWO dealer cards. 
+Only uncomment ONE of these two dealer test blocks at a time (Either Lines 170 thru 181   OR   Lines 187 thru 200)
+*/
+// Dealer.drawCard()
+// Dealer.drawCard()
+// console.log("Dealer object:", Dealer);
+// console.log("Dealer.hand = ", Dealer.hand);
+// console.log("Value of Dealer's first card = ", Dealer.hand[0].val);
+// console.log("Value of Dealer's second card = ", Dealer.hand[1].val);
+// console.log("Sum of those two values:")
+// console.log(Number(Dealer.hand[0].val) + Number(Dealer.hand[1].val))
+// console.log("CalcPoints object for Dealer's first 2 cards is below. \n If isSoft is true that means an Ace was counted as having a value of 11.")
+// console.log(calcPoints(Dealer.hand));
+// console.log("The result of dealerShouldDraw is below. \n If it says true below that means the Dealer has 16 or less \t OR \t Dealer has exactly 17 using an Ace that has a value of 11.")
+// console.log(dealerShouldDraw(Dealer.hand))
+
+
+/* Uncomment the block of code below to test the dealerShouldDraw() logic after receiving their THIRD card. 
+Only uncomment ONE of the two dealer test blocks at a time (Either Lines 170 thru 181   OR   Lines 187 thru 200)
+*/
+// Dealer.drawCard()
+// Dealer.drawCard()
+// Dealer.drawCard()
+// console.log("Dealer object:", Dealer);
+// console.log("Dealer.hand = ", Dealer.hand);
+// console.log("Value of Dealer's first card = ", Dealer.hand[0].val);
+// console.log("Value of Dealer's second card = ", Dealer.hand[1].val);
+// console.log("Sum of those two values:")
+// console.log(Number(Dealer.hand[0].val) + Number(Dealer.hand[1].val))
+// console.log("Val of Dealer's third card = ", Dealer.hand[2].val);
+// console.log("CalcPoints object for Dealer's first 3 cards is below. \nIf isSoft is true that means an Ace was counted as having a value of 11.")
+// console.log(calcPoints(Dealer.hand));
+// console.log("The result of dealerShouldDraw is below. \n If it says true below that means the Dealer has 16 or less \t OR \t Dealer has exactly 17 using an Ace that has a value of 11.")
+// console.log(dealerShouldDraw(Dealer.hand))
+
 
 
 /*
@@ -324,27 +362,31 @@ function initGame() {
   const removeButton = document.getElementById("startButton");  // Gets "Start" button so that it can be removed
   removeButton.remove();                                        // Removes "Start" button from page, now that it has been clicked on
 
-    Player.drawCard();                                              // Deals first card of first hand to player
-    Player.drawCard();                                              // Second card of first hand to player
+  // Deals cards to player
+  Player.drawCard();
+  Player.drawCard();
 
-    const displayCard = document.createElement("p");
-    displayCard.innerHTML = (`Your first card is a ${Player.hand[0].displayVal} of ${Player.hand[0].suit}` + '<Br>' + `Your second card is a ${Player.hand[1].displayVal} of ${Player.hand[1].suit}`)
-    const insertDisplayCard = document.getElementById("gameContent");
-    insertDisplayCard.appendChild(displayCard);
+  // Deals cards to dealer
+  Dealer.drawCard();
 
-    let myButton = document.getElementById("gameButtons");           // Accesses HTML div with id "startButton"
+  const displayCard = document.createElement("p");
+  displayCard.innerHTML = (`Your first card is a ${Player.hand[0].displayVal} of ${Player.hand[0].suit}` + '<Br>' + `Your second card is a ${Player.hand[1].displayVal} of ${Player.hand[1].suit}` + '<p>' + `🃏 The dealer's face-up card shows a ${Dealer.hand[0].displayVal} of ${Dealer.hand[0].suit}`)
+  const insertDisplayCard = document.getElementById("gameContent");
+  insertDisplayCard.appendChild(displayCard);
 
-    const dealButton = document.createElement('button');            // Creates a button element
-    dealButton.className = 'deal';                                 // Sets class name for coloration styling
-    dealButton.innerHTML = 'Draw Another Card';                    // Writes words on button
-    myButton.appendChild(dealButton);                              // Pushes button onto HTML page
-    dealButton.addEventListener('click', dealNewCard);             // When button is clicked on, starts the dealNewCard function
+  let myButton = document.getElementById("gameButtons");         // Accesses HTML div with id "startButton"
 
-    const stayButton = document.createElement('button');           // Creates a button element
-    stayButton.className = 'stay';                                 // Sets class name for coloration styling
-    stayButton.innerHTML = '"Stay" - Finalize My Hand';              // Writes words on button
-    myButton.appendChild(stayButton);                              // Pushes button onto HTML page
-    stayButton.addEventListener('click', dealerTurn);                  // When button is clicked on, starts the dealNewCard function
+  const dealButton = document.createElement('button');           // Creates a button element
+  dealButton.className = 'deal';                                 // Sets class name for coloration styling
+  dealButton.textContent = 'Draw Another Card';                    // Writes words on button
+  myButton.appendChild(dealButton);                              // Pushes button onto HTML page
+  dealButton.addEventListener('click', dealNewCard);             // When button is clicked on, starts the dealNewCard function
+
+  const stayButton = document.createElement('button');           // Creates a button element
+  stayButton.className = 'stay';                                 // Sets class name for coloration styling
+  stayButton.textContent = '"Stay" - Finalize My Hand';            // Writes words on button
+  myButton.appendChild(stayButton);                              // Pushes button onto HTML page
+  stayButton.addEventListener('click', dealerTurn);              // When button is clicked on, starts the dealNewCard function
 };
 
 
