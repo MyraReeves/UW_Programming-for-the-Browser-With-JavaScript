@@ -315,10 +315,6 @@ If the dealer draws exactly 21 after drawing her first 2 cards, the dealer immed
 // Extra Credit:  Separate game visible on HTML page:
 
 
-// let sumD = (Dealer.hand[0].val) + (Dealer.hand[1].val);             // Calculates sum of dealer's starting hand
-// console.log("The dealer's starting total is: ", sumD);
-
-
 // IIFE to welcome player to blackjack game by name:
 const welcome = (function (){
     const playerName = prompt("Hello!  What is your name?");
@@ -342,27 +338,27 @@ startButton.addEventListener('click', initGame);                 // When "Start"
 
 
 function initGame() {
-    const removeButton = document.getElementById("startButton");  // Gets "Start" button so that it can be removed
-    removeButton.remove();                                        // Removes "Start" button from page, now that it has been clicked on
+  const removeButton = document.getElementById("startButton");  // Gets "Start" button so that it can be removed
+  removeButton.remove();                                        // Removes "Start" button from page, now that it has been clicked on
 
-    const displayCard = document.createElement("p");                // Creates paragraph tag
-    displayCard.innerHTML = (`Your first card is a ${Player.hand[0].displayVal} of ${Player.hand[0].suit}` + '<Br>' + `Your second card is a ${Player.hand[1].displayVal} of ${Player.hand[1].suit}` + '</p><p>' + `🃏 The dealer's face-up card shows a ${Dealer.hand[0].displayVal} of ${Dealer.hand[0].suit}`)   // Fills words & HTML tags into newly-created paragraph
-    const insertDisplayCard = document.getElementById("gameContent");   // Establishes connection with gameContent parent div
-    insertDisplayCard.appendChild(displayCard);                     // Pushes displayCard to gameContent div
+  const displayCard = document.createElement("p");                // Creates paragraph tag
+  displayCard.innerHTML = (`Your first card is a ${Player.hand[0].displayVal} of ${Player.hand[0].suit}` + '<Br>' + `Your second card is a ${Player.hand[1].displayVal} of ${Player.hand[1].suit}` + '</p><p>' + `🃏 The dealer's face-up card shows a ${Dealer.hand[0].displayVal} of ${Dealer.hand[0].suit}`)   // Fills words & HTML tags into newly-created paragraph
+  const insertDisplayCard = document.getElementById("gameContent");   // Establishes connection with gameContent parent div
+  insertDisplayCard.appendChild(displayCard);                     // Pushes displayCard to gameContent div
 
-    let myButton = document.getElementById("gameButtons");          // Establishes new DOM connection for new game buttons being added
+  let myButton = document.getElementById("gameButtons");          // Establishes new DOM connection for new game buttons being added
 
-    const dealButton = document.createElement('button');            // Creates a button element
-    dealButton.className = 'deal';                                 // Sets class name for coloration styling
-    dealButton.innerHTML = 'Draw Another Card';                    // Writes words on button
-    myButton.appendChild(dealButton);                              // Pushes button onto HTML page
-    dealButton.addEventListener('click', dealNewCard);             // When button is clicked on, starts the dealNewCard function
+  const dealButton = document.createElement('button');            // Creates a button element
+  dealButton.className = 'deal';                                 // Sets class name for coloration styling
+  dealButton.innerHTML = 'Draw Another Card';                    // Writes words on button
+  myButton.appendChild(dealButton);                              // Pushes button onto HTML page
+  dealButton.addEventListener('click', dealNewCard);             // When button is clicked on, starts the dealNewCard function
 
-    const stayButton = document.createElement('button');           // Creates a button element
-    stayButton.className = 'stay';                                 // Sets class name for coloration styling
-    stayButton.innerHTML = '"Stay" - Finalize My Hand';            // Writes words on button
-    myButton.appendChild(stayButton);                              // Pushes button onto HTML page
-    stayButton.addEventListener('click', dealerTurn);              // When button is clicked on, starts the dealNewCard function
+  const stayButton = document.createElement('button');           // Creates a button element
+  stayButton.className = 'stay';                                 // Sets class name for coloration styling
+  stayButton.innerHTML = '"Stay" - Finalize My Hand';            // Writes words on button
+  myButton.appendChild(stayButton);                              // Pushes button onto HTML page
+  stayButton.addEventListener('click', dealerTurn);              // When button is clicked on, starts the dealNewCard function
 };
 
 
@@ -372,19 +368,19 @@ Player.hand = [Player.hand[0], Player.hand[1]];                     // Resets pl
 
 
 function dealNewCard(){
-    Player.drawCard();                                           // Draws new card whenever player presses button
-    const displayCard = document.createElement("p");
-    const insertDisplayCard = document.getElementById("gameContent");
-    insertDisplayCard.appendChild(displayCard);
-    for(let i = 2 ; i < Player.hand.length ; i++){
-        let display = Player.hand[i].displayVal
-        let cardSuit = Player.hand[i].suit
-        sumP += (Player.hand[i].val);                           // Calculates new sum for player
-        displayCard.innerText = `Your next card is a ${display} of ${cardSuit} . . . . You are at ${sumP}`;
-        if (sumP > 21){
-            sumP -= (Player.hand[i].val);                       // Shows what sum was before the most recent card draw
-            document.write('<p>' + `You were at ${sumP}. Your next card was a ${display} of ${cardSuit} !` + '</p><p>You went over 21!</p> <h2>You lost! 😖</h2>')};
-    };
+  Player.drawCard();                                           // Draws new card whenever player presses button
+  const displayCard = document.createElement("p");
+  const insertDisplayCard = document.getElementById("gameContent");
+  insertDisplayCard.appendChild(displayCard);
+  for(let i = 2 ; i < Player.hand.length ; i++){
+      let display = Player.hand[i].displayVal
+      let cardSuit = Player.hand[i].suit
+      sumP += (Player.hand[i].val);                           // Calculates new sum for player
+      displayCard.innerText = `Your next card is a ${display} of ${cardSuit} . . . . You are at ${sumP}`;
+      if (sumP > 21){
+          sumP -= (Player.hand[i].val);                       // Shows what sum was before the most recent card draw
+          document.write('<p>' + `You were at ${sumP}. Your next card was a ${display} of ${cardSuit} !` + '</p><p>You went over 21!</p> <h2>You lost! 😖</h2>')};
+  };
     // Gah!  I never figured out how to get this function to return the player's final tally of points for comparison later with the dealer's.
     // return {finalTotal: sumP.total};
     // calcPoints(Player.hand);                                     // Provides sumP for player
