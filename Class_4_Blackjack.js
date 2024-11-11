@@ -73,7 +73,6 @@ const getDeck = (function (){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
 // 1. Create a class CardPlayer...
 class CardPlayer{
 
@@ -88,7 +87,7 @@ class CardPlayer{
     }
         // drawCard method = function with no arguments. Selects a card at random from the deck, and adds to hand array.  This does not need to remove the card from the deck (so theoretically a player could draw the same card multiple times - that's okay for this scenario).
     drawCard() {
-        this.hand.push(deck[Math.floor(Math.random() * 52)])
+        this.hand.push(deck[Math.floor(Math.random() * 52)])                        // Draws first card
     }
 
 };
@@ -103,29 +102,29 @@ const Dealer = new CardPlayer('Dealer - FrankCatton');
 
 //3. Write a function calcPoints, that accepts one argument: hand - Array - Array of card objects with properties val, displayVal, and suit
 const calcPoints = (dotHand) => {
-  // This function will calculate the total number of points the hand is worth. every card will be worth its val, EXCEPT each Ace card can be treated as either 1 or 11.
-  sumOfHand = 0;
-  isSoft = false;
-  for(let i = 0 ; i < dotHand.length ; i++){
-      if (dotHand[i].val == 11){
-          // By default, an Ace should be treated as being worth 11 for purposes of calculating the total:
-          if ((sumOfHand + dotHand[i].val) > 21) {
-              // If the sum of the val of all the cards in the hand would exceed 21, if an Ace were valued as 11, then the Ace should be valued at 1
-              sumOfHand += 1
-          }
-          else {
-              sumOfHand += dotHand[i].val          // Same as sum += 11 because dotHand[i].val equals 11
-              isSoft = true;
-          }
-      }
-      else {
-          sumOfHand += dotHand[i].val
-      }
-  }
-  /* This function should return an object with the following properties:
-  total - the number point value of the hand, 
-  isSoft - boolean (true if there is an Ace in the hand that is being counted as 11 points).   */
-  return {total: sumOfHand, isSoft};
+    // This function will calculate the total number of points the hand is worth. every card will be worth its val, EXCEPT each Ace card can be treated as either 1 or 11.
+    sumOfHand = 0;
+    isSoft = false;
+    for(let i = 0 ; i < dotHand.length ; i++){
+        if (dotHand[i].val == 11){
+            // By default, an Ace should be treated as being worth 11 for purposes of calculating the total:
+            if ((sumOfHand + dotHand[i].val) > 21) {
+                // If the sumP of the val of all the cards in the hand would exceed 21, if an Ace were valued as 11, then the Ace should be valued at 1
+                sumOfHand += 1
+            }
+            else {
+                sumOfHand += dotHand[i].val          // Same as sumP += 11 because dotHand[i].val equals 11
+                isSoft = true;
+            }
+        }
+        else {
+            sumOfHand += dotHand[i].val
+        };
+    };
+    /* This function should return an object with the following properties:
+    total - the number point value of the hand, 
+    isSoft - boolean (true if there is an Ace in the hand that is being counted as 11 points).   */
+    return {total: sumOfHand, isSoft};
 };
 
 
@@ -147,21 +146,20 @@ unless sum of first & second is <= 10  */
 
 
 
-
 // 4. Write a function dealerShouldDraw, that accepts one argument: dealerHand - Array of card objects with properties val, displayVal, and suit. This function should determine whether the dealer should draw another card or not.  This function should return a boolean. True means the dealer should draw another card; false means the dealer should end their turn.
 const dealerShouldDraw = (dealerHand) => {
-  // If the dealer's hand is 16 points or less, the dealer should draw another card. Use the calculateScore function to determine the dealer's total points.
-  if ((calcPoints(dealerHand).total) <= 16){
-      return true
-  }
-  // If the dealer's hand is exactly 17 points AND the dealer has an Ace valued at 11, the dealer should draw another card. Use the isSoft property to determine if the dealer has an Ace that is being counted as 11.
-  else if ((calcPoints(dealerHand).total) == 17 && isSoft == true){
-      return true
-  }
-  // Otherwise (if the dealer's hand is 17 points or more), the dealer will end her turn.
-  else {
-      return false
-  }
+    // If the dealer's hand is 16 points or less, the dealer should draw another card. Use the calculateScore function to determine the dealer's total points.
+    if ((calcPoints(dealerHand).total) <= 16){
+        return true
+    }
+    // If the dealer's hand is exactly 17 points AND the dealer has an Ace valued at 11, the dealer should draw another card. Use the isSoft property to determine if the dealer has an Ace that is being counted as 11.
+    else if ((calcPoints(dealerHand).total) == 17 && isSoft == true){
+        return true
+    }
+    // Otherwise (if the dealer's hand is 17 points or more), the dealer will end her turn.
+    else {
+        return false
+    };
 };
 
 
@@ -236,7 +234,6 @@ const determineWinner = (playerScore, dealerScore) => {
 // console.log("The calculation object created from the Dealer's hand is: ", calcPoints(Dealer.hand))
 // console.log("Outcome of the game is below:")
 // console.log(determineWinner(calcPoints(Player.hand).total, calcPoints(Dealer.hand).total));
-
 
 
 
@@ -338,27 +335,27 @@ startButton.addEventListener('click', initGame);                 // When "Start"
 
 
 function initGame() {
-  const removeButton = document.getElementById("startButton");  // Gets "Start" button so that it can be removed
-  removeButton.remove();                                        // Removes "Start" button from page, now that it has been clicked on
+    const removeButton = document.getElementById("startButton");  // Gets "Start" button so that it can be removed
+    removeButton.remove();                                        // Removes "Start" button from page, now that it has been clicked on
 
-  const displayCard = document.createElement("p");                // Creates paragraph tag
-  displayCard.innerHTML = (`Your first card is a ${Player.hand[0].displayVal} of ${Player.hand[0].suit}` + '<Br>' + `Your second card is a ${Player.hand[1].displayVal} of ${Player.hand[1].suit}` + '</p><p>' + `🃏 The dealer's face-up card shows a ${Dealer.hand[0].displayVal} of ${Dealer.hand[0].suit}`)   // Fills words & HTML tags into newly-created paragraph
-  const insertDisplayCard = document.getElementById("gameContent");   // Establishes connection with gameContent parent div
-  insertDisplayCard.appendChild(displayCard);                     // Pushes displayCard to gameContent div
+    const displayCard = document.createElement("p");                // Creates paragraph tag
+    displayCard.innerHTML = (`Your first card is a ${Player.hand[0].displayVal} of ${Player.hand[0].suit}` + '<Br>' + `Your second card is a ${Player.hand[1].displayVal} of ${Player.hand[1].suit}` + '</p><p>' + `🃏 The dealer's face-up card shows a ${Dealer.hand[0].displayVal} of ${Dealer.hand[0].suit}`)   // Fills words & HTML tags into newly-created paragraph
+    const insertDisplayCard = document.getElementById("gameContent");   // Establishes connection with gameContent parent div
+    insertDisplayCard.appendChild(displayCard);                     // Pushes displayCard to gameContent div
 
-  let myButton = document.getElementById("gameButtons");          // Establishes new DOM connection for new game buttons being added
+    let myButton = document.getElementById("gameButtons");          // Establishes new DOM connection for new game buttons being added
 
-  const dealButton = document.createElement('button');            // Creates a button element
-  dealButton.className = 'deal';                                 // Sets class name for coloration styling
-  dealButton.innerHTML = 'Draw Another Card';                    // Writes words on button
-  myButton.appendChild(dealButton);                              // Pushes button onto HTML page
-  dealButton.addEventListener('click', dealNewCard);             // When button is clicked on, starts the dealNewCard function
+    const dealButton = document.createElement('button');            // Creates a button element
+    dealButton.className = 'deal';                                 // Sets class name for coloration styling
+    dealButton.innerHTML = 'Draw Another Card';                    // Writes words on button
+    myButton.appendChild(dealButton);                              // Pushes button onto HTML page
+    dealButton.addEventListener('click', dealNewCard);             // When button is clicked on, starts the dealNewCard function
 
-  const stayButton = document.createElement('button');           // Creates a button element
-  stayButton.className = 'stay';                                 // Sets class name for coloration styling
-  stayButton.innerHTML = '"Stay" - Finalize My Hand';            // Writes words on button
-  myButton.appendChild(stayButton);                              // Pushes button onto HTML page
-  stayButton.addEventListener('click', dealerTurn);              // When button is clicked on, starts the dealNewCard function
+    const stayButton = document.createElement('button');           // Creates a button element
+    stayButton.className = 'stay';                                 // Sets class name for coloration styling
+    stayButton.innerHTML = '"Stay" - Finalize My Hand';            // Writes words on button
+    myButton.appendChild(stayButton);                              // Pushes button onto HTML page
+    stayButton.addEventListener('click', dealerTurn);              // When button is clicked on, starts the dealNewCard function
 };
 
 
@@ -368,19 +365,19 @@ Player.hand = [Player.hand[0], Player.hand[1]];                     // Resets pl
 
 
 function dealNewCard(){
-  Player.drawCard();                                           // Draws new card whenever player presses button
-  const displayCard = document.createElement("p");
-  const insertDisplayCard = document.getElementById("gameContent");
-  insertDisplayCard.appendChild(displayCard);
-  for(let i = 2 ; i < Player.hand.length ; i++){
-      let display = Player.hand[i].displayVal
-      let cardSuit = Player.hand[i].suit
-      sumP += (Player.hand[i].val);                           // Calculates new sum for player
-      displayCard.innerText = `Your next card is a ${display} of ${cardSuit} . . . . You are at ${sumP}`;
-      if (sumP > 21){
-          sumP -= (Player.hand[i].val);                       // Shows what sum was before the most recent card draw
-          document.write('<p>' + `You were at ${sumP}. Your next card was a ${display} of ${cardSuit} !` + '</p><p>You went over 21!</p> <h2>You lost! 😖</h2>')};
-  };
+    Player.drawCard();                                           // Draws new card whenever player presses button
+    const displayCard = document.createElement("p");
+    const insertDisplayCard = document.getElementById("gameContent");
+    insertDisplayCard.appendChild(displayCard);
+    for(let i = 2 ; i < Player.hand.length ; i++){
+        let display = Player.hand[i].displayVal
+        let cardSuit = Player.hand[i].suit
+        sumP += (Player.hand[i].val);                           // Calculates new sum for player
+        displayCard.innerText = `Your next card is a ${display} of ${cardSuit} . . . . You are at ${sumP}`;
+        if (sumP > 21){
+            sumP -= (Player.hand[i].val);                       // Shows what sum was before the most recent card draw
+            document.write('<p>' + `You were at ${sumP}. Your next card was a ${display} of ${cardSuit} !` + '</p><p>You went over 21!</p> <h2>You lost! 😖</h2>')};
+    };
     // Gah!  I never figured out how to get this function to return the player's final tally of points for comparison later with the dealer's.
     // return {finalTotal: sumP.total};
     // calcPoints(Player.hand);                                     // Provides sumP for player
@@ -388,82 +385,81 @@ function dealNewCard(){
     // const playerEndingTally = calcPoints(Player.hand)
     // console.log("Ending amount is: ", playerEndingTally.total)
     // return playerEndingTally.total;
-  };
+};
 
-  // let finalTotal = dealNewCard();
-  // console.log(finalTotal);
-  
-  
-  let sumD = ((Dealer.hand[0]).val + (Dealer.hand[1]).val);            // Calculates sum of dealer's starting hand
-  
-  Dealer.hand = [Dealer.hand[0], Dealer.hand[1]];                     // Resets dealer's hand to only being two cards
-  
-  function dealerTurn(){
-      const removeButton = document.getElementById("gameButtons");  // Gets the game buttons
-      removeButton.remove();                                        // Removes both buttons, now that player is done using them
-  
-      const displayDealerCard = document.createElement("p");
-      const insertDisplayDealerCard = document.getElementById("gameContent");
-      insertDisplayDealerCard.appendChild(displayDealerCard);
-      displayDealerCard.innerHTML = ("<p><br><br>🔒 You have locked in your total and it's the dealer's turn now. 🔒 <br>" + `The dealer flips over their second card... It is a ${Dealer.hand[1].displayVal} of ${Dealer.hand[1].suit}` + '<br>' + `This means that the dealer starts at ${sumD}` + '</p>');
-      const timedDelay = setTimeout(endOfGame1, 3000);
-  }
-  
-  
-  const endOfGame1 = () => {
-      const displayDealerCard = document.createElement("p");
-      const insertDisplayDealerCard = document.getElementById("gameContent");
-      insertDisplayDealerCard.appendChild(displayDealerCard);
-      if (sumD < 21 && dealerShouldDraw(Dealer.hand)){
-          Dealer.drawCard();
-          sumD = calcPoints(Dealer.hand).total;
-          displayDealerCard.innerHTML = (`The dealer takes another card... It is a ${Dealer.hand[2].displayVal} of ${Dealer.hand[2].suit}` + '</p><p>' + `The dealer now has ${sumD}...` + '</p>');
-          const timedDelay = setTimeout(endOfGame2, 4000);
-      }
-      else if (sumD > 21) {
-          document.write('<p>The dealer went over 21!</p> <h1 style="font-weight: bold; color: dark green;">You won! 😀</h1>');
-      }
-      else if (sumD == 21) {
-          displayDealerCard.textContent = ('21 wins the game for the dealer! 💸');
-      }
-      else {
-          displayDealerCard.innerHTML = (`The dealer stays at ${sumD}.`);
-      }
-  }
-  
-  
-  const endOfGame2 = () => {
-      const displayDealerCard = document.createElement("p");
-      const insertDisplayDealerCard = document.getElementById("gameContent");
-      sumD = calcPoints(Dealer.hand).total;
-          if (sumD > 21) {
-              document.write('<p>The dealer went over 21!</p> <h1 style="font-weight: bold; color: green;">You won! 😀</h1>');
-          }
-          else if (sumD < 21 && dealerShouldDraw(Dealer.hand)) {
-              Dealer.drawCard();
-              for(let i = 3 ; i < Dealer.hand.length ; i++){
-                  sumD = calcPoints(Dealer.hand).total;
-                  displayDealerCard.innerHTML = (`The dealer takes another card... It is a ${Dealer.hand[i].displayVal} of ${Dealer.hand[i].suit}` + '</p><p>' + `The dealer has ${sumD}...` + '</p>');
-                  insertDisplayDealerCard.appendChild(displayDealerCard);
-                  while (sumD < 21 && dealerShouldDraw(Dealer.hand)) {
-                      Dealer.drawCard();
-                      sumD += (Dealer.hand[i].val)
-                      if (sumD > 21) {
-                          sumD -= (Dealer.hand[i].val);           // Sets value to what it was BEFORE the dealer's most recent card
-                          document.write('<p>' + `The dealer had ${sumD}.  The dealer took another card. It was a ${Dealer.hand[i].displayVal} of ${Dealer.hand[i].suit}` + '<br>The dealer went over 21!</p> <h2 style="color:green";>You won! 😀</h2>');
-                          insertDisplayDealerCard.appendChild(displayDealerCard);
-                          
-                      }
-                      else {
-                          displayDealerCard.textContent = (`The dealer stands at ${sumD}`);
-                          insertDisplayDealerCard.appendChild(displayDealerCard);
-                      }
-                  }
-              }
-          }
-          else {
-          displayDealerCard.textContent = ('The dealer stays.');
-          insertDisplayDealerCard.appendChild(displayDealerCard);
-          };
-  };
-  
+// let finalTotal = dealNewCard();
+// console.log(finalTotal);
+
+
+let sumD = ((Dealer.hand[0]).val + (Dealer.hand[1]).val);            // Calculates sum of dealer's starting hand
+
+Dealer.hand = [Dealer.hand[0], Dealer.hand[1]];                     // Resets dealer's hand to only being two cards
+
+function dealerTurn(){
+    const removeButton = document.getElementById("gameButtons");  // Gets the game buttons
+    removeButton.remove();                                        // Removes both buttons, now that player is done using them
+
+    const displayDealerCard = document.createElement("p");
+    const insertDisplayDealerCard = document.getElementById("gameContent");
+    insertDisplayDealerCard.appendChild(displayDealerCard);
+    displayDealerCard.innerHTML = ("<p><br><br>🔒 You have locked in your total and it's the dealer's turn now. 🔒 <br>" + `The dealer flips over their second card... It is a ${Dealer.hand[1].displayVal} of ${Dealer.hand[1].suit}` + '<br>' + `This means that the dealer starts at ${sumD}` + '</p>');
+    const timedDelay = setTimeout(endOfGame1, 3000);
+}
+
+
+const endOfGame1 = () => {
+    const displayDealerCard = document.createElement("p");
+    const insertDisplayDealerCard = document.getElementById("gameContent");
+    insertDisplayDealerCard.appendChild(displayDealerCard);
+    if (sumD < 21 && dealerShouldDraw(Dealer.hand)){
+        Dealer.drawCard();
+        sumD = calcPoints(Dealer.hand).total;
+        displayDealerCard.innerHTML = (`The dealer takes another card... It is a ${Dealer.hand[2].displayVal} of ${Dealer.hand[2].suit}` + '</p><p>' + `The dealer now has ${sumD}...` + '</p>');
+        const timedDelay = setTimeout(endOfGame2, 4000);
+    }
+    else if (sumD > 21) {
+        document.write('<p>The dealer went over 21!</p> <h1 style="font-weight: bold; color: dark green;">You won! 😀</h1>');
+    }
+    else if (sumD == 21) {
+        displayDealerCard.textContent = ('21 wins the game for the dealer! 💸');
+    }
+    else {
+        displayDealerCard.innerHTML = (`The dealer stays at ${sumD}.`);
+    }
+}
+
+
+const endOfGame2 = () => {
+    const displayDealerCard = document.createElement("p");
+    const insertDisplayDealerCard = document.getElementById("gameContent");
+    sumD = calcPoints(Dealer.hand).total;
+        if (sumD > 21) {
+            document.write('<p>The dealer went over 21!</p> <h1 style="font-weight: bold; color: green;">You won! 😀</h1>');
+        }
+        else if (sumD < 21 && dealerShouldDraw(Dealer.hand)) {
+            Dealer.drawCard();
+            for(let i = 3 ; i < Dealer.hand.length ; i++){
+                sumD = calcPoints(Dealer.hand).total;
+                displayDealerCard.innerHTML = (`The dealer takes another card... It is a ${Dealer.hand[i].displayVal} of ${Dealer.hand[i].suit}` + '</p><p>' + `The dealer has ${sumD}...` + '</p>');
+                insertDisplayDealerCard.appendChild(displayDealerCard);
+                while (sumD < 21 && dealerShouldDraw(Dealer.hand)) {
+                    Dealer.drawCard();
+                    sumD += (Dealer.hand[i].val)
+                    if (sumD > 21) {
+                        sumD -= (Dealer.hand[i].val);           // Sets value to what it was BEFORE the dealer's most recent card
+                        document.write('<p>' + `The dealer had ${sumD}.  The dealer took another card. It was a ${Dealer.hand[i].displayVal} of ${Dealer.hand[i].suit}` + '<br>The dealer went over 21!</p> <h2 style="color:green";>You won! 😀</h2>');
+                        insertDisplayDealerCard.appendChild(displayDealerCard);
+                        
+                    }
+                    else {
+                        displayDealerCard.textContent = (`The dealer stands at ${sumD}`);
+                        insertDisplayDealerCard.appendChild(displayDealerCard);
+                    }
+                }
+            }
+        }
+        else {
+        displayDealerCard.textContent = ('The dealer stays.');
+        insertDisplayDealerCard.appendChild(displayDealerCard);
+        };
+};
