@@ -1,0 +1,21 @@
+#plus, #minus {
+    font-weight: bold;
+    font-size: 20px;
+    margin: 10px 7px;
+    padding: 5px 15px;
+}
+
+#plus {
+    background-color: rgb(180, 254, 229);
+    color: blue;
+}
+
+#minus {
+    background-color: rgb(255, 213, 220);
+    color: rgb(165, 0, 0);
+}
+
+#count {
+    font-size: 30px;
+    margin-left: 51px;      /* Due to margins and padding, halfway in between the two buttons should be =   7 + 15 + 15 + 7 + 7 */
+}
