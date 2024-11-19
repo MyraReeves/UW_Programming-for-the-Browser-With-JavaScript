@@ -7,7 +7,7 @@ Add the jQuery script tag to your document.  Then...
 3. Update the third <li> item ("Turbocharged"), set the class name to "highlight"
 4. Create a new <a> element containing the text "Buy Now!" with an id of "cta" after the last <p>
 5. Remove (delete) the last paragraph ("Available for purchase now...")
-6. Create a listener on the "Buy Now!" link that responds to a click event.  When clicked, the the "Buy Now!" link should be removed and replaced with text that says "Added to cart"
+6. Create a listener on the "Buy Now!" link that responds to a click event.  When clicked, the "Buy Now!" link should be removed and replaced with text that says "Added to cart".  The class can be toggled on and off with a click as well.
 ****************************************************
 */
 
@@ -38,4 +38,17 @@ $(document).ready( function() {
 
 
     $('p').remove();
+
+
+    // $('a').on('click', (event) => {
+    //     let $this = $(this)
+    //     $('a').toggle()                 // Changes display style to "none", effectively removing the element from view
+    // })
+
+    $('a').click(function(e) {
+        let $this = $(this);
+        $this.toggleClass('clicked');       // When clicked, the <a> element will TOGGLE between 'clicked' class or an empty class
+        $($this).text('Added to cart! 🛒')      // When clicked, the text content of the <a> element will PERMANENTLY change
+        $($this).attr('id', '');            // When clicked, the id attribute will be PERMANENTLY changed to a blank/empty id
+        });
 });
