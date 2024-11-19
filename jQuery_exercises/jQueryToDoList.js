@@ -28,12 +28,36 @@ $(document).ready( function() {
   
     // Step 2. If the Delete <a> is clicked, remove the <li>:
   
-    // Step 3. If an 'Add' link is clicked, adds the item as a new list item to the list
+    // Step 3. Using a function, if an 'Add' link is clicked add the item as a new list item to the list:
+    // First part, creating the function:
     const addListItem = function(e) {
-      e.preventDefault();
-      const text = $('input').val();
-    
+        e.preventDefault();
+        let newlistItem = $('<li>');
+        $(unorderedList).append(newlistItem);
+        let newSpan = $('<span>');
+        let text = $('input').val();
+        newSpan.text(text);
+        $(newlistItem).append(newSpan);
+        let newDeleteButton = $('<a>');
+        newDeleteButton.text('Delete');
+        newDeleteButton.attr('class', 'delete');
+        $(newlistItem).append(newDeleteButton);
+
+        // Adding the "done" class to the new list item if it's clicked on:
+        let newlyCreatedListItem = $('li');
+        $(newlyCreatedListItem).click(function() {
+        // The following commented out code alternative (ie toggling the class instead) would turn off the toggle on earlier list items!
+        // let $thisListItem = $(this);
+        // $thisListItem.toggleClass('done');
+        let $thisListItem = $(this);
+        $thisListItem.addClass('done');
+        });
     };
+
+    // Second part, assigning the event listener:
+    $('.add-item').on( "click", addListItem);
+
+
   
   });
   
