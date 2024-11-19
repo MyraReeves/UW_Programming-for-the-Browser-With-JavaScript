@@ -25,9 +25,42 @@ $(document).ready( function() {
       $this.toggleClass('done');       // When clicked, the <li> element will TOGGLE between a class of 'done' and being blank
     });
     
+
   
-    // Step 2. If the Delete <a> is clicked, remove the <li>:
-  
+
+  // Step 2. If the Delete <a> is clicked, remove the <li>:
+  const unorderedList = $('ul');                // Finds the unordered list
+  const allClassDeleteElements = $('.delete');    // Locates all elements with a class of 'delete' and stores that array in a variable
+
+  /*  
+  Note #1 - The result of the following...
+          $(allClassDeleteElements).click(function(event) {
+          let $this = $(this);
+          $this.remove();
+          });
+  ...would be that when a delete button is clicked only that one <a> button is removed, NOT its <li> element:
+
+
+  Note #2 - And the result of the following...
+          $(allClassDeleteElements).click(function(event) {
+          let thisLi = $('li');
+          thisLi.remove();
+          });
+  ...would be that when ANY delete button is clicked, ALL <li> elements on the page are deleted!
+  */
+
+
+  // I came up with a solution using the addition (upon click) of a new id on that clicked list item, which can then be targeted (as the next command occurring within the click listener function) so that only that single newly marked list item gets deleted:
+  $(allClassDeleteElements).each(function () {
+    $(this).on('click', function () {
+      $('li').attr('id', 'deleteMe');
+      $('#deleteMe').remove()
+    })
+  });
+
+    
+
+
     // Step 3. Using a function, if an 'Add' link is clicked add the item as a new list item to the list:
     // First part, creating the function:
     const addListItem = function(e) {
@@ -42,6 +75,14 @@ $(document).ready( function() {
         newDeleteButton.text('Delete');
         newDeleteButton.attr('class', 'delete');
         $(newlistItem).append(newDeleteButton);
+        
+        $(newDeleteButton).on('click', function () {
+            let allLis = $('li');
+            $(allLis[2]).attr('id', 'deleteMe');         // This will always target the third list item for deletion instead of deleting whichever one was clicked.
+            let toBeDeleted = $('#deleteMe');
+             $(toBeDeleted).remove();
+        })
+        
 
         // Adding the "done" class to the new list item if it's clicked on:
         let newlyCreatedListItem = $('li');
