@@ -53,7 +53,8 @@ $(document).ready( function() {
   // I came up with a solution using the addition (upon click) of a new id on that clicked list item, which can then be targeted (as the next command occurring within the click listener function) so that only that single newly marked list item gets deleted:
   $(allClassDeleteElements).each(function () {
     $(this).on('click', function () {
-      $('li').attr('id', 'deleteMe');
+      let parentOfClicked = $(this).parent()
+      $(parentOfClicked).attr('id', 'deleteMe');
       $('#deleteMe').remove()
     })
   });
@@ -75,15 +76,14 @@ $(document).ready( function() {
         newDeleteButton.text('Delete');
         newDeleteButton.attr('class', 'delete');
         $(newlistItem).append(newDeleteButton);
-        
-        $(newDeleteButton).on('click', function () {
-            let allLis = $('li');
-            $(allLis[2]).attr('id', 'deleteMe');         // This will always target the third list item for deletion instead of deleting whichever one was clicked.
-            let toBeDeleted = $('#deleteMe');
-             $(toBeDeleted).remove();
-        })
-        
 
+        // Adds functionality to the Delete button of newly created list item:
+        $(newDeleteButton).on('click', function () {
+          let parentOfClicked = $(this).parent()
+          $(parentOfClicked).attr('id', 'deleteMe');
+          $('#deleteMe').remove()
+        })
+    
         // Adding the "done" class to the new list item if it's clicked on:
         let newlyCreatedListItem = $('li');
         $(newlyCreatedListItem).click(function() {
