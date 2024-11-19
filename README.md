@@ -2,6 +2,10 @@
 
 School assignments from the 2024 Fall quarter of the University of Washington's ["Full-Stack Development With JavaScript" certificate program](https://www.pce.uw.edu/certificates/full-stack-development-with-javascript).
 
+* [Class 6 - jQuery](/jQuery_exercises/): Two different assignments to practice using the jQuery library for DOM manipulation
+
+* [Class 6 - Prototypes inside Classes](/Class_6_Prototypes.js): Using prototypes during Object creation
+
 * [Class 5 - CRUD of elements, X/Y axis location, and To-do List](/Class_5/): DOM Manipulation
 
 * [Class 4 - Blackjack Game](/Class_4_Blackjack.js): Loops and some DOM Manipulation
