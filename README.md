@@ -2,6 +2,8 @@
 
 School assignments from the 2024 Fall quarter of the University of Washington's ["Full-Stack Development With JavaScript" certificate program](https://www.pce.uw.edu/certificates/full-stack-development-with-javascript).
 
+* [Class 7 - Forms](/Class_7_Contact.js): Form Validation
+
 * [Class 6 - jQuery](/jQuery_exercises/): Two different assignments to practice using the jQuery library for DOM manipulation
 
 * [Class 6 - Prototypes inside Classes](/Class_6_Prototypes.js): Using prototypes during Object creation
