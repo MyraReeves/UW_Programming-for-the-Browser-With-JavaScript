@@ -1,69 +1,73 @@
 .container {
-    border: solid 3px purple;
-    width: 30%;
-    margin: 30px 0 0 15px;
+  border: solid 3px purple;
+  width: 30%;
+  margin: 30px 0 0 15px;
 }
 
 h1 {
-    color: blue;
-    font-weight: bold;
-    margin: 1px auto 5px auto;
-    text-align: center;
+  color: blue;
+  font-weight: bold;
+  margin: 1px auto 5px auto;
+  text-align: center;
 }
 
 hr.dashed {
-    border-top: 3px dashed purple;
-    margin-bottom: 0;
-  }
+  border-top: 3px dashed purple;
+  margin-bottom: 0;
+}
 
 #contact-form {
-    background-color: rgb(233, 233, 233);
-    padding: 15px 0 0 10px;
+  background-color: rgb(233, 233, 233);
+  padding: 15px 0 0 10px;
 }
 
 input {
-    width: 50%;
-    /* margin-bottom: 15px; */
-    padding: 3px;
+  width: 50%;
+  /* margin-bottom: 15px; */
+  padding: 3px;
 }
 
 .error {
-    color: red;
-    margin-bottom: 35px;
-    visibility: hidden;
+  color: red;
+  margin-bottom: 35px;
+  visibility: hidden;
+}
+
+#jobError, #urlError {
+  visibility: hidden;
 }
 
 .submitButton {
-    margin: 5px auto 15px auto;
-    background-color: rgb(216, 242, 250);
-    color:blue;
-    font-weight: bold;
-    border: 2px rgb(2, 2, 174) solid;
-    margin-left: 25%;
+  margin: 5px auto 15px auto;
+  background-color: rgb(216, 242, 250);
+  color:blue;
+  font-weight: bold;
+  border: 2px rgb(2, 2, 174) solid;
+  margin-left: 25%;
 }
 
 .submitButton:hover {
-    color: rgb(216, 242, 250);
-    background-color:blue;
-    border: 2px solid rgb(216, 242, 250);
-    cursor: pointer;
-    box-shadow: 0px 0px 15px 2px lightblue;
+  color: rgb(216, 242, 250);
+  background-color:blue;
+  border: 2px solid rgb(216, 242, 250);
+  cursor: pointer;
+  box-shadow: 0px 0px 15px 2px lightblue;
 }
 
 
 .invalid {
-    border: 1px solid red;
-    background-color: #ffdddd;
-  }
-  
-input:invalid {
   border: 1px solid red;
+  background-color: #ffdddd;
+}
+
+input:invalid {
+border: 1px solid red;
 }
 
 input:valid {
-  border: 1px solid green;
+border: 1px solid green;
 }
 
 .hiddenOption {
-    display: none;
-  }
+  display: none;
+}
