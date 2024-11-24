@@ -1,0 +1,130 @@
+<!-- Imagine you have a personal website, and on that website you have a contact form. This form will contain the following fields:
+1. Name (text type)
+2. Email (type email)
+3. Reason for contacting (select type) with the following options:
+  Job opportunity
+    IF "Job opportunity" is selected, should show the following additional items:
+      Job title (text type)
+      Company website (url type)
+  Talk code
+    IF "Talk code" is selected, should show the following item:
+      Coding language (type text or select, your choice)
+4. Message (textarea)
+5. Submit Button
+-->
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Contact Me</title>
+    <link rel="stylesheet" href="Class_7_Contact.css">
+
+  </head>
+  <body>
+
+    <div class="container">
+      <h1>📨 Contact Me: </h1>
+      <hr class="dashed">
+      <form id="contact-form" action="">
+        
+        <!--------------------- Name --------------------->
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            id="name"
+            class="form-control validate-input"
+            type="text"
+            name="name"
+          />
+          <!-- INSTRUCTIONS:  Should contain validation for the following items.  A message should appear for each invalid item (after submit):   Name: is required, must be 3 or more characters -->
+          <small class="error">* REQUIRED! * <br>⚠️ Must be 3 or more characters ⚠️ <br><br></small>
+        </div>
+
+        <!--------------------- Email --------------------->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            class="form-control validate-input"
+            type="email"
+            name="email"
+          />
+          <!-- INSTRUCTIONS:  Should contain validation for the following items.  A message should appear for each invalid item (after submit):  Email: is required, must be in format (regex) /\w+@\w+\.\w+/  -->
+          <small class="error">* REQUIRED! * <br><br></small></small>
+        </div>
+
+        <!--------------------- Reason for contacting --------------------->
+        <div class="form-group">
+          <label for="kind">Reason for contacting:</label>
+          <select class="form-control" name="kind" id="contact-kind">
+            <option value="choose" selected="selected" disabled>
+              Choose one
+            </option>
+            <option value="job">Job opportunity</option>
+            <option value="coding">Talk code</option>
+          </select>
+        </div>
+
+        <div class="form-group hidden">
+          <div class="subsection">
+            <label for="jobTitle" style="color: blue;">🪪 Job Title:</label>
+            <input
+              id="jobTitle"
+              class="form-control validate-input"
+              type="text"
+              name="jobTitle"    
+            />
+            <!-- 1. If "Job opportunity" is selected, validate the following and show messages if invalid:  Job Title is present -->
+            <small class="error" aria-live="polite">*Required*</small>
+          </div>
+
+          <div class="subsection">
+            <label for="website" style="color: blue;">🌐 Company Website:</label>
+            <input
+              id="website"
+              class="form-control validate-input"
+              type="url"
+              name="website"    
+            />
+            <!-- 1. If "Job opportunity" is selected, validate the following and show messages if invalid:  Company website is present and url is valid (regex) /https?\:\/\/.+\..+/ (or use constraint validation api) -->
+            <small class="error" aria-live="polite">*Required*</small>
+          </div>
+        </div>
+
+
+        <div class="form-group hidden">
+          <div class="subsection">
+            <label for="coding-language" style="color: brown;">👩‍💻 Coding Language:</label>
+            <!-- If "Talk code" is selected:  Coding language should be a <select> (dropdown) containing 3 or more coding languages as options (i.e. HTML, CSS, JavaScript).  The initially selected option should be "Choose One" -->
+            <select name="coding-language" id="coding-language">
+                <option value="default">Choose One</option>
+                <option value="html">HTML</option>
+                <option value="css">CSS</option>
+                <option value="javascript">JavaScript</option>
+                <option value="python">Python</option>
+            </select>
+            <!-- INSTRUCTIONS:  If "Talk code" is selected:  Validate that this field (coding language) is changed to one of the coding languages, and show a message if invalid -->
+            <small class="error" aria-live="polite">*Required*</small>
+          </div>
+        </div>
+
+        <!--------------------- Message --------------------->
+        <div class="form-group" style="margin-top: 15px;">
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" rows="4" cols="55"></textarea>
+          <!-- INSTRUCTIONS:  Should contain validation for the following items.  A message should appear for each invalid item (after submit):  Message: is required, must be 10 or more characters -->
+          <small class="error">*REQUIRED!* <br>⚠️ Must be 10 or more characters ⚠️ <br><br></small>
+        </div>
+
+        <!--------------------- Submit Button --------------------->
+        <div class="form-group">
+          <input class="submitButton" type="submit" value="Submit" />
+        </div>
+      </form>
+    </div>
+
+
+    <script src="Class_7_Contact.js"></script>
+  </body>
+</html>
