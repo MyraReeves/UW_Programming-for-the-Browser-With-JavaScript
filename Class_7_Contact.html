@@ -22,7 +22,6 @@
 
   </head>
   <body>
-
     <div class="container">
       <h1>📨 Contact Me: </h1>
       <hr class="dashed">
@@ -37,8 +36,8 @@
             type="text"
             name="name"
           />
-          <!-- INSTRUCTIONS:  Should contain validation for the following items.  A message should appear for each invalid item (after submit):   Name: is required, must be 3 or more characters -->
-          <small class="error">* REQUIRED! * <br>⚠️ Must be 3 or more characters ⚠️ <br><br></small>
+          <!-- Should contain validation for the following items.  A message should appear for each invalid item (after submit):   Name: is required, must be 3 or more characters -->
+          <small id="errorName" class="error">* REQUIRED! * <br>⚠️ Must be 3 or more characters ⚠️ <br><br></small>
         </div>
 
         <!--------------------- Email --------------------->
@@ -50,8 +49,8 @@
             type="email"
             name="email"
           />
-          <!-- INSTRUCTIONS:  Should contain validation for the following items.  A message should appear for each invalid item (after submit):  Email: is required, must be in format (regex) /\w+@\w+\.\w+/  -->
-          <small class="error">* REQUIRED! * <br><br></small></small>
+          <!-- Should contain validation for the following items.  A message should appear for each invalid item (after submit):  Email: is required, must be in format (regex) /\w+@\w+\.\w+/  -->
+          <small id="emailError" class="error">* MISSING URL! * <br><br></small></small>
         </div>
 
         <!--------------------- Reason for contacting --------------------->
@@ -66,8 +65,8 @@
           </select>
         </div>
 
-        <div class="form-group hidden">
-          <div class="subsection">
+        <div id="job" class="form-group hiddenOption">
+          <div>
             <label for="jobTitle" style="color: blue;">🪪 Job Title:</label>
             <input
               id="jobTitle"
@@ -75,11 +74,11 @@
               type="text"
               name="jobTitle"    
             />
-            <!-- 1. If "Job opportunity" is selected, validate the following and show messages if invalid:  Job Title is present -->
-            <small class="error" aria-live="polite">*Required*</small>
+            <!-- 1. If "Job opportunity" is selected, validate the following and show messages if invalid:  Job Title gets provided -->
+            <small id="jobError" class="error">* Required *</small>
           </div>
 
-          <div class="subsection">
+          <div id="subsection">
             <label for="website" style="color: blue;">🌐 Company Website:</label>
             <input
               id="website"
@@ -87,15 +86,14 @@
               type="url"
               name="website"    
             />
-            <!-- 1. If "Job opportunity" is selected, validate the following and show messages if invalid:  Company website is present and url is valid (regex) /https?\:\/\/.+\..+/ (or use constraint validation api) -->
-            <small class="error" aria-live="polite">*Required*</small>
+            <!-- 1. If "Job opportunity" is selected, validate the following and show messages if invalid:  Company website gets provided and url is valid (regex) /https?\:\/\/.+\..+/ (or use constraint validation api) -->
+            <small id="urlError" class="error"><br>*Valid url required* &emsp;&emsp; Required format = https://SLDname<b>.</b>TLDextension</small>
           </div>
         </div>
 
-
-        <div class="form-group hidden">
-          <div class="subsection">
-            <label for="coding-language" style="color: brown;">👩‍💻 Coding Language:</label>
+        <div id="language" class="form-group hiddenOption">
+          <div>
+            <label for="coding-language" style="color: blue;">💻 Coding Language:</label>
             <!-- If "Talk code" is selected:  Coding language should be a <select> (dropdown) containing 3 or more coding languages as options (i.e. HTML, CSS, JavaScript).  The initially selected option should be "Choose One" -->
             <select name="coding-language" id="coding-language">
                 <option value="default">Choose One</option>
@@ -104,8 +102,8 @@
                 <option value="javascript">JavaScript</option>
                 <option value="python">Python</option>
             </select>
-            <!-- INSTRUCTIONS:  If "Talk code" is selected:  Validate that this field (coding language) is changed to one of the coding languages, and show a message if invalid -->
-            <small class="error" aria-live="polite">*Required*</small>
+            <!-- If "Talk code" is selected:  Validate that this field (coding language) is changed to one of the coding languages, and show a message if invalid -->
+            <small id="language-error" class="error">*Selection Required*</small>
           </div>
         </div>
 
@@ -113,8 +111,8 @@
         <div class="form-group" style="margin-top: 15px;">
           <label for="message">Message:</label>
           <textarea id="message" name="message" rows="4" cols="55"></textarea>
-          <!-- INSTRUCTIONS:  Should contain validation for the following items.  A message should appear for each invalid item (after submit):  Message: is required, must be 10 or more characters -->
-          <small class="error">*REQUIRED!* <br>⚠️ Must be 10 or more characters ⚠️ <br><br></small>
+          <!-- Should contain validation for the following items.  A message should appear for each invalid item (after submit):  Message: is required, must be 10 or more characters -->
+          <small id="errorMessage" class="error">*REQUIRED!* <br>⚠️ Must be 10 or more characters ⚠️ <br><br></small>
         </div>
 
         <!--------------------- Submit Button --------------------->
