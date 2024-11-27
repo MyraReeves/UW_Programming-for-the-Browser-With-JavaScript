@@ -98,6 +98,8 @@ const selectionChoices = (selectedElement) => {
     if (selectedValue === 'job') {
         job.classList.remove('hiddenOption');
         language.classList.add('hiddenOption');
+        jobTitle.setAttribute('required', 'true');
+        website.setAttribute('required', 'true');
         jobError.style.visibility = 'visible';
         urlError.style.visibility = 'visible';
         jobTitle.parentElement.classList.add('invalid');
@@ -107,6 +109,7 @@ const selectionChoices = (selectedElement) => {
     }
     else if (selectedValue === 'coding'){
         language.classList.remove('hiddenOption');
+        codingSelection.setAttribute('required', 'true');
         job.classList.add('hiddenOption');
         languageError.style.visibility = 'visible'; //Shows message if no change
         codingSelection.addEventListener('change', languageSelection)
@@ -159,4 +162,4 @@ theFormContainer.addEventListener('submit', (eventObject) => {
         eventObject.preventDefault();
         console.log("BAD INPUT");
     }
-});
+})
