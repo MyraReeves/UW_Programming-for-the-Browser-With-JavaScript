@@ -35,6 +35,7 @@
             class="form-control validate-input"
             type="text"
             name="name"
+            required
           />
           <!-- Should contain validation for the following items.  A message should appear for each invalid item (after submit):   Name: is required, must be 3 or more characters -->
           <small id="errorName" class="error">* REQUIRED! * <br>⚠️ Must be 3 or more characters ⚠️ <br><br></small>
@@ -48,6 +49,7 @@
             class="form-control validate-input"
             type="email"
             name="email"
+            required
           />
           <!-- Should contain validation for the following items.  A message should appear for each invalid item (after submit):  Email: is required, must be in format (regex) /\w+@\w+\.\w+/  -->
           <small id="emailError" class="error">* MISSING URL! * <br><br></small></small>
@@ -96,7 +98,7 @@
             <label for="coding-language" style="color: blue;">💻 Coding Language:</label>
             <!-- If "Talk code" is selected:  Coding language should be a <select> (dropdown) containing 3 or more coding languages as options (i.e. HTML, CSS, JavaScript).  The initially selected option should be "Choose One" -->
             <select name="coding-language" id="coding-language">
-                <option value="default">Choose One</option>
+                <option value="" selected="selected" disabled>Choose One</option>
                 <option value="html">HTML</option>
                 <option value="css">CSS</option>
                 <option value="javascript">JavaScript</option>
@@ -110,7 +112,7 @@
         <!--------------------- Message --------------------->
         <div class="form-group" style="margin-top: 15px;">
           <label for="message">Message:</label>
-          <textarea id="message" name="message" rows="4" cols="55"></textarea>
+          <textarea id="message" name="message" rows="4" cols="55" required></textarea>
           <!-- Should contain validation for the following items.  A message should appear for each invalid item (after submit):  Message: is required, must be 10 or more characters -->
           <small id="errorMessage" class="error">*REQUIRED!* <br>⚠️ Must be 10 or more characters ⚠️ <br><br></small>
         </div>
