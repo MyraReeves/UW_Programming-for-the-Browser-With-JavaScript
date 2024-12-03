@@ -2,6 +2,8 @@
 
 School assignments from the 2024 Fall quarter of the University of Washington's ["Full-Stack Development With JavaScript" certificate program](https://www.pce.uw.edu/certificates/full-stack-development-with-javascript).
 
+* [Class 8 - Timing Functions & API interactions](/Class_8/): setTimeout(), setInterval(), requestAnimationFrame(), Promise(), fetch()
+
 * [Class 7 - Forms](/Class_7_Contact.js): Form Validation
 
 * [Class 6 - jQuery](/jQuery_exercises/): Two different assignments to practice using the jQuery library for DOM manipulation
@@ -20,6 +22,6 @@ School assignments from the 2024 Fall quarter of the University of Washington's 
 
 * [Class 3 - BattleGame](Class_3_battleGame.js):  Functions and random numbers
 
-* [Class 2 homework](Class_2_Exercises.js):  Objects, Arrays, RegEx, and Date constructor function
+* [Class 2](Class_2_Exercises.js):  Objects, Arrays, RegEx, and Date constructor function
 
-* [Class 1 homework](Class_1_Exercises.js):  Math objects, Indexof, Substring, and getTime
+* [Class 1](Class_1_Exercises.js):  Math objects, Indexof, Substring, and getTime
