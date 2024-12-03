@@ -4,8 +4,7 @@ should:
  • If the result of Math.random() is > 0.5, call resolve()
  • If the result of Math.random() is <= 0.5, call reject()
  • If the promise is resolved, should console.log('success')
- • If the promise is rejected
- , should console.log('fail')
+ • If the promise is rejected, should console.log('fail')
  • In either case, should console.log('complete')
 */
 
