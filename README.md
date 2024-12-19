@@ -1,6 +1,10 @@
 # ![UW logo](UW.png) _"Programming for the Browser With JavaScript"_
 
-School assignments from the 2024 Fall quarter of the University of Washington's ["Full-Stack Development With JavaScript" certificate program](https://www.pce.uw.edu/certificates/full-stack-development-with-javascript).
+[🪪 Click here to see my badge 🪪](https://continuumuw.badgr.com/public/assertions/CN0baYDJT1alwUQHGHO_iQ)
+
+<br>
+
+Below are my school assignments from the 2024 Fall quarter of the University of Washington's ["Full-Stack Development With JavaScript" certificate program](https://www.pce.uw.edu/certificates/full-stack-development-with-javascript) :
 
 * [Class 8 - Timing Functions & API interactions](/Class_8/): setTimeout(), setInterval(), requestAnimationFrame(), Promise(), fetch()
 
