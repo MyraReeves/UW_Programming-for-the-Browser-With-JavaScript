@@ -36,4 +36,6 @@ Below are my school assignments from the 2024 Fall quarter of the University of 
 
 <br>
 
+## Grades
+
 ![Screenshot of grades on Canvas](Screenshot.jpg)
