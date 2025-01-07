@@ -1,6 +1,8 @@
 # ![UW logo](UW.png) _"Programming for the Browser With JavaScript"_
 
-[🪪 Click here to see my badge 🪪](https://continuumuw.badgr.com/public/assertions/CN0baYDJT1alwUQHGHO_iQ)
+Grade: A+
+<br>
+[🪪 Click here to see my badge of completion 🪪](https://continuumuw.badgr.com/public/assertions/CN0baYDJT1alwUQHGHO_iQ)
 
 <br>
 
@@ -29,3 +31,9 @@ Below are my school assignments from the 2024 Fall quarter of the University of 
 * [Class 2](Class_2_Exercises.js):  Objects, Arrays, RegEx, and Date constructor function
 
 * [Class 1](Class_1_Exercises.js):  Math objects, Indexof, Substring, and getTime
+
+<br>
+
+<br>
+
+![Screenshot of grades on Canvas](Screenshot.jpg)
