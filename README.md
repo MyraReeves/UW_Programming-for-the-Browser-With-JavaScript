@@ -1,10 +1,10 @@
 # ![UW logo](UW.png) _"Programming for the Browser With JavaScript"_
 
-Grade: A+
 <br>
+
 [🪪 Click here to see my badge of completion 🪪](https://continuumuw.badgr.com/public/assertions/CN0baYDJT1alwUQHGHO_iQ)
 
-<br>
+<br> <br>
 
 Below are my school assignments from the 2024 Fall quarter of the University of Washington's ["Full-Stack Development With JavaScript" certificate program](https://www.pce.uw.edu/certificates/full-stack-development-with-javascript) :
 
